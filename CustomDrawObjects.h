@@ -1,5 +1,6 @@
 #pragma once
 
+#include <time.h>
 #include <float.h>
 #include <qgl.h>
 #include <QVector3D>
@@ -327,9 +328,10 @@ public:
 		glBegin(GL_LINES);
 		for(int i = 0; i < c; i++)
 		{
-			Vector3d center = planes[i].first;
-			glv(center);
-			glv(Vector3(center + ((Vector3d)n[i] * 0.2 * scale)));
+			QVector3D p = n[i] * 0.2 * scale;
+			QVector3D center = planes[i].first;
+			glVertQt(center);
+			glVertQt(QVector3D(center + p));
 		}
 		glEnd();
 
@@ -662,7 +664,6 @@ static QColor qtJetColorMap(double value, double min = 0.0, double max = 1.0)
     return QColor(rgb[0],rgb[1],rgb[2]);
 }
 
-#include <time.h>
 static std::vector<double> randomColor()
 {
     std::vector<double> color;

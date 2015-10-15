@@ -26,7 +26,7 @@ SUBDIRS += topo-blend   # Main plugin for topo-blending
 #SUBDIRS += test        # Performance test
 
 # Dependecy map
-nurbs_plugin.depends = NURBS
+nurbs_plugin.depends = NURBS TopoBlenderLib
 TopoBlenderLib.depends = GlSplatRendererLib
 topo-blend.depends = GlSplatRendererLib NURBS DynamicVoxel ScorerLib TopoBlenderLib 
 demo.depends = GlSplatRendererLib NURBS DynamicVoxel ScorerLib TopoBlenderLib

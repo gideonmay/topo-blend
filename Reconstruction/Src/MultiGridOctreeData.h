@@ -370,10 +370,12 @@ public:
 	int refineBoundary( int subdivisionDepth );
 	Pointer( Real ) GetSolutionGrid( int& res , Real isoValue=0.f , int depth=-1 );
 	int setTree( char* fileName , int maxDepth , int minDepth , int kernelDepth , Real samplesPerNode ,
-		Real scaleFactor , int useConfidence , Real constraintWeight , int adaptiveExponent , XForm4x4< Real > xForm=XForm4x4< Real >::Identity );
+//		Real scaleFactor , int useConfidence , Real constraintWeight , int adaptiveExponent , XForm4x4< Real > xForm=XForm4x4< Real >::Identity );
+		Real scaleFactor , int useConfidence , Real constraintWeight , int adaptiveExponent , XForm4x4< Real > xForm);
 
     int setTreeMemory( PointStream< Real >* pointStream , int maxDepth , int minDepth , int kernelDepth , Real samplesPerNode ,
-        Real scaleFactor , int useConfidence , Real constraintWeight , int adaptiveExponent , XForm4x4< Real > xForm=XForm4x4< Real >::Identity );
+//        Real scaleFactor , int useConfidence , Real constraintWeight , int adaptiveExponent , XForm4x4< Real > xForm=XForm4x4< Real >::Identity );
+        Real scaleFactor , int useConfidence , Real constraintWeight , int adaptiveExponent , XForm4x4< Real > xForm );
 
 	void SetLaplacianConstraints(void);
 	void ClipTree(void);

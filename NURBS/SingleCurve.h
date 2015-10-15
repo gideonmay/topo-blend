@@ -24,10 +24,10 @@ public:
     virtual Real GetLength (Real t0, Real t1);
     virtual Real GetTime (Real length, int iterations = 32, Real tolerance = (Real)1e-05);
 
-    Curve<Real>::mTMin;
-    Curve<Real>::mTMax;
-    Curve<Real>::GetSpeed;
-    Curve<Real>::GetTotalLength;
+    using Curve<Real>::mTMin;
+    using Curve<Real>::mTMax;
+    using Curve<Real>::GetSpeed;
+    using Curve<Real>::GetTotalLength;
 
     static Real GetSpeedWithData (Real t, void* data);
 };

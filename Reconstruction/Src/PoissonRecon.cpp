@@ -44,7 +44,8 @@ DAMAGE.
 #include "PPolynomial.h"
 #include "Ply.h"
 #include "MemoryUsage.h"
-#include "omp.h"
+#include "Octree.h"
+// #include "omp.h"
 
 #include <stdarg.h>
 char* outputFile=NULL;
@@ -133,7 +134,8 @@ cmdLineInt
 #endif
 	MaxSolveDepth( "maxSolveDepth" ) ,
 	BoundaryType( "boundary" , 1 ) ,
-	Threads( "threads" , omp_get_num_procs() );
+	Threads( "threads" , 4 );
+	// Threads( "threads" , omp_get_num_procs() );
 
 cmdLineFloat
 	SamplesPerNode( "samplesPerNode" , 1.f ) ,

@@ -38,6 +38,9 @@ DAMAGE.
 template< class NodeData , class Real=float >
 class OctNode
 {
+public:
+	class Neighbors5;
+	class ConstNeighbors5;
 private:
 	static int UseAlloc;
 	unsigned long long _depthAndOffset;

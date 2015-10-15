@@ -782,7 +782,7 @@ void Graph::draw2D(int width, int height)
 
 	Eigen::Vector3d b2dmin = bound2D.min();
 	QVector3D minBound(b2dmin.x(),b2dmin.y(),b2dmin.z());
-	QVector3D corner = QVector3D(qMin(0.0, minBound.x()), qMin(0.0, minBound.y()), qMin(0.0, minBound.z()));
+	QVector3D corner = QVector3D(qMin(0.0f, minBound.x()), qMin(0.0f, minBound.y()), qMin(0.0f, minBound.z()));
 	QVector3D graph_center = 0.5 * QVector3D(width, height,0);
 	QVector3D scaling = QVector3D(width, height, 0) / boundRadius;
 
@@ -1733,8 +1733,11 @@ void Graph::transform( QMatrix4x4 mat )
 		if(isSelective && !node->selections.size()) continue;
 		
 		Array1D_Vector3 controlPoints = node->controlPoints();
-		for(int i = 0; i < (int)controlPoints.size(); i++)
-			controlPoints[i] = QVector3(mat * QVector3(controlPoints[i]));
+		for(int i = 0; i < (int)controlPoints.size(); i++) {
+			QVector3 qv = QVector3(mat * QVector3(controlPoints[i]));
+			Vector3 cp = Vector3(qv.x(), qv.y(), qv.z());
+			controlPoints[i] = cp;
+		}
 		node->setControlPoints(controlPoints);
 		
 		// Update needed for Sheets
@@ -1745,7 +1748,11 @@ void Graph::transform( QMatrix4x4 mat )
 		if(!node->property.contains("mesh")) continue;
 		SurfaceMesh::Model* model = getMesh( node->id );
 		Vector3VertexProperty points = model->vertex_property<Vector3d>("v:point");
-		foreach(Vertex v, model->vertices()) points[v] = QVector3(mat * QVector3(points[v]));
+		foreach(Vertex v, model->vertices()) {
+			QVector3 qv = QVector3(mat * QVector3(points[v]));
+			Vector3 p = Vector3(qv.x(), qv.y(), qv.z());
+			points[v] = p;
+		}
 	}
 }
 

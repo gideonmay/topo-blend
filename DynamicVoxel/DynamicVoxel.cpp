@@ -296,7 +296,7 @@ void DynamicVoxel::addBox(const Vector3d & minimum, const Vector3d & maximum)
 	int stepsY = qMax(diag.y()+voxel_size*2, voxel_size) / voxel_size;
 	int stepsZ = qMax(diag.z()+voxel_size*2, voxel_size) / voxel_size;
 
-	Voxel corner (Vector3d((minimum - Vector3d(voxel_size)) / voxel_size));
+	Voxel corner (Vector3d((minimum - Vector3d(voxel_size,voxel_size,voxel_size)) / voxel_size));
 
 	for(int x = 0; x <= stepsX; x++){
 		for(int y = 0; y <= stepsY; y++){

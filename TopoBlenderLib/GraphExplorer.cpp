@@ -1,4 +1,4 @@
-#include <QtConcurrentRun>
+#include <QtConcurrent/QtConcurrentRun>
 #include <QSet>
 #include <QStack>
 #include <QFileDialog>

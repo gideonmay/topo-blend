@@ -1,6 +1,7 @@
 #include "GraphModifyWidget.h"
 #include "ui_GraphModifyWidget.h"
 #include <QInputDialog>
+#include <QColor>
 
 GraphModifyWidget::GraphModifyWidget(Structure::Graph * graph, QWidget *parent) : QDialog(parent), ui(new Ui::GraphModifyWidget)
 {
@@ -126,16 +127,16 @@ void GraphModifyWidget::visualizeSelections()
 	// Set black for all
 	foreach (Structure::Node * node,  g->nodes)
 	{
-		node->vis_property["color"] = Qt::lightGray;
+		node->vis_property["color"] = QColor(Qt::lightGray);
 		node->vis_property["showControl"] = false;
 	}
 
 	// Set red for landmark
 	foreach (QListWidgetItem * item, items_1)
-		g->getNode(item->text())->vis_property["color"] = Qt::red;
+		g->getNode(item->text())->vis_property["color"] = QColor(Qt::red);
 
 	foreach (QListWidgetItem * item, items_2)
-		g->getNode(item->text())->vis_property["color"] = Qt::green;
+		g->getNode(item->text())->vis_property["color"] = QColor(Qt::green);
 
 	emit( updateView() );
 

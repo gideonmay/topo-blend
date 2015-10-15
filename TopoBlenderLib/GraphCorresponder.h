@@ -1,4 +1,4 @@
-#pragma once;
+#pragma once
 
 #include "SurfaceMeshModel.h"
 #include "StructureGraph.h"

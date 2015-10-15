@@ -1,5 +1,5 @@
 #include <QApplication> // For mouse icon changing
-#include <QtConcurrentRun> // For easy multi-threading
+#include <QtConcurrent/QtConcurrentRun> // For easy multi-threading
 #include <QQueue>
 
 #include "TaskCurve.h"

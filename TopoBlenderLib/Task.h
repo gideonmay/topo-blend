@@ -7,6 +7,8 @@
 class Task : public QGraphicsObject
 {
 public:
+	Q_OBJECT
+public:
 	enum TaskType{ SHRINK, MERGE, MORPH, SPLIT, GROW };
 	static int const DEFAULT_LENGTH = 80;
 

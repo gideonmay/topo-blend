@@ -15,7 +15,7 @@ char **PoissonRecon::convertArguments(QStringList args)
         argsv[i] = new char[args[i].size() + 1];
 
         for(int j = 0; j < args[i].size(); j++)
-            argsv[i][j] = args[i].at(j).toAscii();
+            argsv[i][j] = (char) args[i].at(j).unicode();
 
 		argsv[i][args[i].size()] = '\0';
     }

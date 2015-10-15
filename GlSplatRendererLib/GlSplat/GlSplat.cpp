@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public
 // License along with GlSplat. If not, see <http://www.gnu.org/licenses/>.
 
+#include "GLee.h"
 #include <QtGui>
 
 #include <math.h>
@@ -53,7 +54,7 @@ QString SplatRenderer::loadSource(const QString& func,const QString& filename)
 
     if (!f.open(QFile::ReadOnly))
     {
-        qDebug() << "failed to load shader file " << filename.toAscii().data() << "\n";
+        qDebug() << "failed to load shader file " << filename.toLatin1().data() << "\n";
         return res;
     }
     else 
@@ -99,8 +100,8 @@ void SplatRenderer::configureShaders()
     {
         QString vsrc = shading + defines + mShaderSrcs[k*2+0];
         QString fsrc = shading + defines + mShaderSrcs[k*2+1];
-        mShaders[k].loadSources(mShaderSrcs[k*2+0]!="" ? vsrc.toAscii().data() : 0,
-                mShaderSrcs[k*2+1]!="" ? fsrc.toAscii().data() : 0/*,Shader::Warnings*/);
+        mShaders[k].loadSources(mShaderSrcs[k*2+0]!="" ? vsrc.toLatin1().data() : 0,
+                mShaderSrcs[k*2+1]!="" ? fsrc.toLatin1().data() : 0/*,Shader::Warnings*/);
     }
 }
 
@@ -337,7 +338,7 @@ bool SplatRenderer::finalize()
     }
 
     // draw a quad covering the whole screen
-    float viewVec[] = {1./mCachedProj[0], 1./mCachedProj[5], -1};
+    float viewVec[] = {1.0f/mCachedProj[0], 1.0f/mCachedProj[5], -1.0f};
 
     glBegin(GL_QUADS);
     glColor3f(1, 0, 0);

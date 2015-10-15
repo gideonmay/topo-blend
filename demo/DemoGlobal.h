@@ -7,7 +7,7 @@
 #include <QVariant>
 #include <QDebug>
 #include <QElapsedTimer>
-#include <QtConcurrentRun>
+#include <QtConcurrent/QtConcurrentRun>
 #include <QDir>
 #include <QFileInfo>
 #include <QtOpenGL>

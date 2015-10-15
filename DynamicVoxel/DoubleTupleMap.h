@@ -1,7 +1,7 @@
 #include <QHash>
 
 #ifndef WIN32
-#include <tr1/functional>
+#include <functional>
 #endif
 
 struct DoubleTuple{
@@ -20,7 +20,7 @@ struct DoubleTuple{
 template <class T>
 inline void hash_combine(std::size_t& seed, const T& v)
 {
-    std::tr1::hash<T> hasher;
+    std::hash<T> hasher;
     seed ^= hasher(v) + 0x9e3779b9 + (seed<<6) + (seed>>2);
 }
 

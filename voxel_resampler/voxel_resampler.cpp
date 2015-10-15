@@ -167,4 +167,5 @@ void voxel_resampler::applyFilter(RichParameterSet *pars)
 	outMesh->isVisible = true;
 }
 
-Q_EXPORT_PLUGIN(voxel_resampler)
+// XXX TODO Fix plugin
+// Q_EXPORT_PLUGIN(voxel_resampler);

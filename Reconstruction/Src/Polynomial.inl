@@ -29,6 +29,8 @@ DAMAGE.
 #include <float.h>
 #include <math.h>
 #include <algorithm>
+#include "Factor.h"
+
 
 ////////////////
 // Polynomial //

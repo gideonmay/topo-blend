@@ -309,6 +309,7 @@ namespace kmeansFast
 
 	  // For small dims D, for loop is noticeably faster than fully vectorized.
 	  // Odd but true.  So we do fastest thing 
+#if 0	  
 	  if ( D <= 16 ) {
 		for (int kk=0; kk<K; kk++) {
 		  Dist.col(kk) = ( X.rowwise() - Mu.row(kk) ).square().rowwise().sum();
@@ -317,6 +318,11 @@ namespace kmeansFast
 		Dist = -2*( X.matrix() * Mu.transpose().matrix() );
 		Dist.rowwise() += Mu.square().rowwise().sum().transpose().row(0);
 	  }
+#else
+		for (int kk=0; kk<K; kk++) {
+		  Dist.col(kk) = ( X.rowwise() - Mu.row(kk) ).square().rowwise().sum();
+		}    
+#endif
 	}
 
 	double assignClosest( ExtMat &X, ExtMat &Mu, ExtMat &Z, Mat &Dist) {

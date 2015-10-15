@@ -423,7 +423,7 @@ void nurbs_plugin::loadGroupsFromOBJ()
 	while( !inF.atEnd() ){
 		QString line = inF.readLine();
 		if(!line.size()) continue;
-		if(line.at(0).toAscii() == 'g'){
+		if((line.at(0).unicode() & 0xFF) == 'g'){
 			QStringList groupLine = line.split(" ");
 			QString gid = QString::number(groupFaces.size());
 			if(groupLine.size()) gid = groupLine.at(1);
@@ -962,7 +962,7 @@ NURBS::NURBSRectangled nurbs_plugin::surfaceFit( SurfaceMeshModel * part )
 	Array2D_Vector3 cp = bf.lines;
 	//cp.clear(); // debug
 
-	if(!cp.size()) return NURBS::NURBSRectangled::createSheet(Vector3d(0,0,0),Vector3d(0.01));
+	if(!cp.size()) return NURBS::NURBSRectangled::createSheet(Vector3d(0,0,0),Vector3d(0.01, 0.01, 0.01));
 
 	Array2D_Real cw(cp.size(), Array1D_Real(cp.front().size(), 1.0));
 	int degree = 3;
@@ -1011,4 +1011,5 @@ void nurbs_plugin::loadGraph()
 	graph = new Structure::Graph(fileNames.front());
 }
 
-Q_EXPORT_PLUGIN (nurbs_plugin)
+// XXX TODO Fix plugin
+// Q_EXPORT_PLUGIN (nurbs_plugin)

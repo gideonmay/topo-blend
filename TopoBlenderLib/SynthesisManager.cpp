@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <QFileDialog>
-#include <QtConcurrentRun>
+#include <QtConcurrent/QtConcurrentRun>
 
 #include "GlSplatRenderer.h"
 GlSplatRenderer * splat_renderer = NULL;
