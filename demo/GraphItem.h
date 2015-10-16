@@ -1,6 +1,7 @@
 #pragma once
 #include <QStack>
 #include <qglviewer/camera.h>
+#include <qglviewer/manipulatedCameraFrame.h>
 #include <QGraphicsScene>
 #include <QGraphicsObject>
 #include <QPropertyAnimation>

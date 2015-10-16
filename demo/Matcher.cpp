@@ -5,7 +5,7 @@ using namespace Structure;
 typedef QVector< QSet<size_t> > ForcedGroups;
 Q_DECLARE_METATYPE( ForcedGroups )
 
-Matcher::Matcher(Scene * scene, QString title) : gcorr(NULL), prevItem(NULL), isAuto(true), DemoPage(scene,title)
+Matcher::Matcher(Scene * scene, QString title) : DemoPage(scene,title), gcorr(NULL), prevItem(NULL), isAuto(true)
 {
 	// Fill in color sets
 	for(int i = 0; i < 100; i++)
