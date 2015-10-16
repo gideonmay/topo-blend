@@ -26,7 +26,7 @@ public:
 	QVector3 (const QVector3D& v){ this->setX(v.x());this->setY(v.y());this->setZ(v.z()); }
 	QVector3 (const Vector3d& v){ this->setX(v.x());this->setY(v.y());this->setZ(v.z()); }
 	operator const Vector3d() { return Vector3d(x(),y(),z()); }
-	operator const QVector3D() { return *this; }
+	// operator const QVector3D() { return *this; } // XXX Gideon
 };
 
 class PolygonSoup : public RenderObject::Base{
@@ -353,10 +353,10 @@ public:
 	}
 
 	static QVector3 orthogonalVector(const QVector3& n) {
-		if ((abs(n.y()) >= 0.9 * abs(n.x())) &&
-			abs(n.z()) >= 0.9 * abs(n.x())) return QVector3(0.0, -n.z(), n.y());
-		else if ( abs(n.x()) >= 0.9 * abs(n.y()) &&
-			abs(n.z()) >= 0.9 * abs(n.y()) ) return QVector3(-n.z(), 0.0, n.x());
+		if ((std::abs(n.y()) >= 0.9 * std::abs(n.x())) &&
+			std::abs(n.z()) >= 0.9 * std::abs(n.x())) return QVector3(0.0, -n.z(), n.y());
+		else if ( std::abs(n.x()) >= 0.9 * std::abs(n.y()) &&
+			std::abs(n.z()) >= 0.9 * std::abs(n.y()) ) return QVector3(-n.z(), 0.0, n.x());
 		else return QVector3(-n.y(), n.x(), 0.0);
 	}
 };
@@ -629,6 +629,7 @@ public:
 	}
 };
 
+#if 0
 static QColor qtColdColor(double value, double min = 0.0, double max = 1.0){
 	unsigned char rgb[3];
 	value-=min;
@@ -641,6 +642,7 @@ static QColor qtColdColor(double value, double min = 0.0, double max = 1.0){
 	else {rgb[0]=rgb[1]=0;rgb[2]=255;}
 	return QColor(rgb[0],rgb[1],rgb[2]);
 }
+#endif
 
 static QColor qtJetColorMap(double value, double min = 0.0, double max = 1.0)
 {
@@ -690,13 +692,13 @@ static std::vector< std::vector<double> > randomColors( int count )
 	return colors;
 }
 
-static QColor qRandomColor()
+static inline QColor qRandomColor()
 {
     std::vector<double> c = randomColor();
     return QColor::fromRgbF( c[0], c[1], c[2], c[3] );
 }
 
-static QColor qRandomColor2(double saturation = 0.5, double val = 0.95)
+static inline QColor qRandomColor2(double saturation = 0.5, double val = 0.95)
 {
 	double golden_ratio_conjugate = 0.618033988749895;
 	double h = ((double)rand() / RAND_MAX);
@@ -712,7 +714,7 @@ double inline uniformRand(double a = 0.0, double b = 1.0){
 }
 
 // for mid = 0, colors are centered around Red
-static QColor qRandomColor3(double mid = 0, double range = 0.5, double saturation = 1.0, double val = 1.0)
+static inline QColor qRandomColor3(double mid = 0, double range = 0.5, double saturation = 1.0, double val = 1.0)
 {
 	// Bound checks
 	mid = qMax(0.0, qMin(1.0, mid));

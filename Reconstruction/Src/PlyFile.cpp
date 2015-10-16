@@ -39,24 +39,24 @@
 #include "PlyFile.h"
 
 char *type_names[] = {
-	"invalid",
-	"char",
-	"short",
-	"int",
-	"uchar",
-	"ushort",
-	"uint",
-	"float",
-	"double",
+	(char *) "invalid",
+	(char *) "char",
+	(char *) "short",
+	(char *) "int",
+	(char *) "uchar",
+	(char *) "ushort",
+	(char *) "uint",
+	(char *) "float",
+	(char *) "double",
 
-	"int8",       // character                 1
-	"uint8",      // unsigned character        1
-	"int16",      // short integer             2
-	"uint16",     // unsigned short integer    2
-	"int32",      // integer                   4
-	"uint32",     // unsigned integer          4
-	"float32",    // single-precision float    4
-	"float64",    // double-precision float    8
+	(char *) "int8",       // character                 1
+	(char *) "uint8",      // unsigned character        1
+	(char *) "int16",      // short integer             2
+	(char *) "uint16",     // unsigned short integer    2
+	(char *) "int32",      // integer                   4
+	(char *) "uint32",     // unsigned integer          4
+	(char *) "float32",    // single-precision float    4
+	(char *) "float64",    // double-precision float    8
 
 };
 
@@ -770,7 +770,7 @@ Specify a comment that will be written in the header.
 	 /* read and parse the file's header */
 	 
 	 words = get_words (plyfile->fp, &nwords, &orig_line);
-	 if (!words || !equal_strings (words[0], "ply"))
+	 if (!words || !equal_strings (words[0], (char *) "ply"))
 	 {
 		 if (words)
 			 free(words);
@@ -779,16 +779,16 @@ Specify a comment that will be written in the header.
 	 while (words) {
 		 /* parse words */
 		 
-		 if (equal_strings (words[0], "format")) {
+		 if (equal_strings (words[0], (char *) "format")) {
 			 if (nwords != 3) {
 				 free(words);
 				 return (NULL);
 			 }
-			 if (equal_strings (words[1], "ascii"))
+			 if (equal_strings (words[1], (char *) "ascii"))
 				 plyfile->file_type = PLY_ASCII;
-			 else if (equal_strings (words[1], "binary_big_endian"))
+			 else if (equal_strings (words[1], (char *) "binary_big_endian"))
 				 plyfile->file_type = PLY_BINARY_BE;
-			 else if (equal_strings (words[1], "binary_little_endian"))
+			 else if (equal_strings (words[1], (char *) "binary_little_endian"))
 				 plyfile->file_type = PLY_BINARY_LE;
 			 else {
 				 free(words);
@@ -796,15 +796,15 @@ Specify a comment that will be written in the header.
 			 }
 			 plyfile->version = (float)atof (words[2]);
 		 }
-		 else if (equal_strings (words[0], "element"))
+		 else if (equal_strings (words[0], (char *) "element"))
 			 add_element (plyfile, words);
-		 else if (equal_strings (words[0], "property"))
+		 else if (equal_strings (words[0], (char *) "property"))
 			 add_property (plyfile, words);
-		 else if (equal_strings (words[0], "comment"))
+		 else if (equal_strings (words[0], (char *) "comment"))
 			 add_comment (plyfile, orig_line);
-		 else if (equal_strings (words[0], "obj_info"))
+		 else if (equal_strings (words[0], (char *) "obj_info"))
 			 add_obj_info (plyfile, orig_line);
-		 else if (equal_strings (words[0], "end_header")) {
+		 else if (equal_strings (words[0], (char *) "end_header")) {
 			 free(words);
 			 break;
 		 }
@@ -1400,9 +1400,10 @@ Open a polygon file for reading.
    other_elems - data structure to free up
   ******************************************************************************/
   
-  void ply_free_other_elements (PlyOtherElems *other_elems)
+  void ply_free_other_elements (PlyOtherElems * /* other_elems */)
   {
-	  other_elems = other_elems;
+	  // XXX Gideon
+//	  other_elems = other_elems;
   }
   
   
@@ -2616,7 +2617,7 @@ Read an element from a binary file.
 	  
 	  prop = (PlyProperty *) myalloc (sizeof (PlyProperty));
 	  
-	  if (equal_strings (words[1], "list")) {       /* is a list */
+	  if (equal_strings (words[1], (char *) "list")) {       /* is a list */
 		  prop->count_external = get_prop_type (words[2]);
 		  prop->external_type = get_prop_type (words[3]);
 		  prop->name = _strdup (words[4]);

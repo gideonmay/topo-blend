@@ -48,8 +48,8 @@ BSplineCurve<Real>::BSplineCurve (int numCtrlPoints,
 template <typename Real>
 void BSplineCurve<Real>::CreateControl (const Array1D_Vector3& ctrlPoint)
 {
-    int newNumCtrlPoints = mNumCtrlPoints + mReplicate;
-    newNumCtrlPoints = newNumCtrlPoints;
+    // int newNumCtrlPoints = mNumCtrlPoints + mReplicate; // XXX Gideon
+    // newNumCtrlPoints = newNumCtrlPoints; // XXX Gideon
 
     mCtrlPoint = ctrlPoint;
 

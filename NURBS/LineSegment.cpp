@@ -185,8 +185,8 @@ void Line::intersectLine( const Line& S2, Vector3 & pa, Vector3 & pb, double Eps
 		}
 	}
 	// finally do the division to get sc and tc
-	sc = (abs(sN) < EPS ? 0.0 : sN / sD);
-	tc = (abs(tN) < EPS ? 0.0 : tN / tD);
+	sc = (std::abs(sN) < EPS ? 0.0 : sN / sD);
+	tc = (std::abs(tN) < EPS ? 0.0 : tN / tD);
 
 	pa = this->pointAt(sc);
 	pb = S2.pointAt(tc);

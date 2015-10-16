@@ -143,7 +143,7 @@ std::vector<Voxel> DynamicVoxel::orientedVoxelCircle(double radius, const Vector
         Vector3d v(voxel.x, voxel.y, voxel.z);
         v /= 2.0;
 
-        if(abs(dot(direction, v.normalized())) < voxel_size)
+        if(std::abs(dot(direction, v.normalized())) < voxel_size)
             result.push_back(Voxel(v.x(), v.y(), v.z()));
     }
 
@@ -155,7 +155,7 @@ std::vector<Voxel> DynamicVoxel::voxelLine(const Vector3d &p1, const Vector3d &p
     std::vector<Voxel> line;
 
     Vector3d d = (p2 - p1) / voxel_size;
-    double N = qMax( abs(d.x()), qMax(abs(d.y()), abs(d.z())) );
+    double N = qMax( std::abs(d.x()), qMax(std::abs(d.y()), std::abs(d.z())) );
     Voxel s = Voxel(Vector3d(d / N));
 
     Voxel p = Voxel(Vector3d(p1 / voxel_size));

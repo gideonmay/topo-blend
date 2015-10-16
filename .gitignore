@@ -1,0 +1,8 @@
+topo-blend.pro.user
+DynamicVoxel/release/lib/libDynamicVoxel.a
+GlSplatRendererLib/release/lib/libGlSplatRendererLib.a
+NURBS/release/lib/libNURBS.a
+Reconstruction/release/lib/libReconstruction.a
+ScorerLib/release/lib/libScorerLib.a
+TopoBlenderLib/release/lib/libTopoBlenderLib.a
+Voxeler/release/lib/libVoxeler.a

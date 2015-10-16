@@ -131,7 +131,7 @@ void ParametricSurface<Real>::ComputePrincipalCurvatureInfo (Real u, Real v,
     Real c2 = metricTensor.Determinant();
 
     // Principal curvatures are roots of characteristic polynomial.
-    Real temp = sqrt(abs(c1*c1 - ((Real)4)*c0*c2));
+    Real temp = sqrt(std::abs(c1*c1 - ((Real)4)*c0*c2));
     Real mult = ((Real)0.5)/c2;
     curv0 = -mult*(c1+temp);
     curv1 = mult*(-c1+temp);

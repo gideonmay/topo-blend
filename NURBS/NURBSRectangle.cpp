@@ -166,7 +166,7 @@ NURBSRectangle<Real> NURBSRectangle<Real>::createSheet( Vector3d corner1, Vector
     int nU = stepsU, nV = stepsV;
     int degree = 3;
 
-    Vector3 center = (corner1 + corner2) * 0.5;
+    // Vector3 center = (corner1 + corner2) * 0.5;
     Vector3 corner = corner1;
 
     Vector3 d = corner1 - corner2;

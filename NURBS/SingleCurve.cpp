@@ -70,7 +70,7 @@ Real SingleCurve<Real>::GetTime (Real length, int iterations, Real tolerance)
     for (int i = 0; i < iterations; ++i)
     {
         Real difference = GetLength(mTMin, t) - length;
-        if (abs(difference) < tolerance)
+        if (std::abs(difference) < tolerance)
         {
             // |L(t)-length| is close enough to zero, report t as the time
             // at which 'length' is attained.

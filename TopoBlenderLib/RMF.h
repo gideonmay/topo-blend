@@ -150,8 +150,8 @@ public:
 		static Frame fromT(const Vec3d& T) { Vec3d R = orthogonalVector(T.normalized()).normalized(); return fromTR(T,R); }
 
 		static Vec3d orthogonalVector(const Vec3d& n) {
-			if ((abs(n.y()) >= 0.9 * abs(n.x())) && abs(n.z()) >= 0.9 * abs(n.x())) return Vec3d(0.0, -n.z(), n.y());
-			else if ( abs(n.x()) >= 0.9 * abs(n.y()) && abs(n.z()) >= 0.9 * abs(n.y()) ) return Vec3d(-n.z(), 0.0, n.x());
+			if ((std::abs(n.y()) >= 0.9 * std::abs(n.x())) && std::abs(n.z()) >= 0.9 * std::abs(n.x())) return Vec3d(0.0, -n.z(), n.y());
+			else if ( std::abs(n.x()) >= 0.9 * std::abs(n.y()) && std::abs(n.z()) >= 0.9 * std::abs(n.y()) ) return Vec3d(-n.z(), 0.0, n.x());
 			else return Vec3d(-n.y(), n.x(), 0.0);
 		}
 
