@@ -30,7 +30,7 @@ Line::Line( const Vector3& start, const Vector3& direction, double length, int i
 	a = start;
 	b = start + (direction.normalized() * length);
 
-	length = length;
+	// length = length; // XXX Gideon
 
 	index = i;
 }

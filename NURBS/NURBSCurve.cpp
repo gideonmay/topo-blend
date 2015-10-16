@@ -69,8 +69,8 @@ NURBSCurve<Real> NURBSCurve<Real>::createCurve( Vector3 from, Vector3 to, int st
 template <typename Real>
 void NURBSCurve<Real>::CreateControl (const Array1D_Vector3 & ctrlPoint, const Array1D_Real & ctrlWeight)
 {
-    int newNumCtrlPoints = mNumCtrlPoints + mReplicate;
-    newNumCtrlPoints = newNumCtrlPoints;
+    // int newNumCtrlPoints = mNumCtrlPoints + mReplicate; // XXX Gideon
+    // newNumCtrlPoints = newNumCtrlPoints; // XXX Gideon
 
     mCtrlPoint = ctrlPoint;
 

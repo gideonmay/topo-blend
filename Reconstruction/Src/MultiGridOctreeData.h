@@ -373,7 +373,7 @@ public:
 //		Real scaleFactor , int useConfidence , Real constraintWeight , int adaptiveExponent , XForm4x4< Real > xForm=XForm4x4< Real >::Identity );
 		Real scaleFactor , int useConfidence , Real constraintWeight , int adaptiveExponent , XForm4x4< Real > xForm);
 
-    int setTreeMemory( PointStream< Real >* pointStream , int maxDepth , int minDepth , int kernelDepth , Real samplesPerNode ,
+        int setTreeMemory( PointStream< Real >* pointStream , int maxDepth , int minDepth , int kernelDepth , Real samplesPerNode ,
 //        Real scaleFactor , int useConfidence , Real constraintWeight , int adaptiveExponent , XForm4x4< Real > xForm=XForm4x4< Real >::Identity );
         Real scaleFactor , int useConfidence , Real constraintWeight , int adaptiveExponent , XForm4x4< Real > xForm );
 
