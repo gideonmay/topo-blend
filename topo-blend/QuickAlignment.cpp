@@ -2,7 +2,9 @@
 #include "ui_QuickAlignment.h"
 #include <QMatrix4x4>
 
+#ifndef M_PI_4
 #define M_PI_4     0.785398163397448309616
+#endif
 #define RADIANS_TO_DEGREES(radians) ((radians) * (180.0 / M_PI))
 #define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
 
@@ -37,8 +39,8 @@ int QuickAlignment::quadrant(Vector3 v)
 	v.normalize();
 
 	double threshold = 0.1;
-	if(abs(v[0]) < threshold) return ((v[1] > 0) ? 2 : 6);	// On y-axis
-	if(abs(v[1]) < threshold) return ((v[0] > 0) ? 0 : 4);	// On x-axis
+	if(std::abs(v[0]) < threshold) return ((v[1] > 0) ? 2 : 6);	// On y-axis
+	if(std::abs(v[1]) < threshold) return ((v[0] > 0) ? 0 : 4);	// On x-axis
 
 	if(v[0] * v[1] > 0 && v[0] > 0) return 1;	// First quadrant
 	if(v[0] < 0 && v[1] > 0) return 3;			// Second
