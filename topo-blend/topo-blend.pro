@@ -66,4 +66,4 @@ FORMS +=    topo_blend_widget.ui \
             wizard.ui
 
 mac:LIBS += -framework CoreFoundation # We need this for GLee..
-mac:QMAKE_LFLAGS += -fopenmp
+# mac:QMAKE_LFLAGS += -fopenmp

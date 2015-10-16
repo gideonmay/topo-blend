@@ -62,6 +62,6 @@ SOURCES +=  poissonrecon.cpp \
             Src/Array.inl
 
 unix:!mac:QMAKE_CXXFLAGS = $$QMAKE_CFLAGS -fpermissive
-mac:QMAKE_LFLAGS += -fopenmp
-mac:QMAKE_CXXFLAGS += -fopenmp
+# mac:QMAKE_LFLAGS += -fopenmp
+# mac:QMAKE_CXXFLAGS += -fopenmp
 

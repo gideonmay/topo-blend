@@ -93,8 +93,8 @@ HEADERS += QGraphViz/svgview.h
 
 FORMS +=  SchedulerWidget.ui GraphModifyWidget.ui GraphExplorer.ui
 
-mac:QMAKE_CXXFLAGS += -fopenmp
-mac:QMAKE_LFLAGS += -fopenmp
+# mac:QMAKE_CXXFLAGS += -fopenmp
+# mac:QMAKE_LFLAGS += -fopenmp
 
 unix:!mac:QMAKE_CXXFLAGS = $$QMAKE_CFLAGS -fpermissive
 unix:!mac:LIBS += -lGLU
