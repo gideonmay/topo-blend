@@ -7,6 +7,7 @@ using namespace SurfaceMesh;
 #include "GlSplat/GLee.h"
 #include "ShapeRenderer.h"
 #include "qglviewer/camera.h"
+#include <qglviewer/manipulatedCameraFrame.h>
 
 Q_DECLARE_METATYPE(qglviewer::Vec)
 

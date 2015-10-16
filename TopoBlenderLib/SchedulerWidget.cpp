@@ -4,7 +4,7 @@
 #include "SchedulerWidget.h"
 #include "ui_SchedulerWidget.h"
 
-SchedulerWidget::SchedulerWidget(Scheduler * scheduler, QWidget *parent) : QWidget(parent), ui(new Ui::SchedulerWidget), s(scheduler)
+SchedulerWidget::SchedulerWidget(Scheduler * scheduler, QWidget *parent) : QWidget(parent), s(scheduler), ui(new Ui::SchedulerWidget)
 {
     ui->setupUi(this);
 

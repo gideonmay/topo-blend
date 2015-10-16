@@ -825,9 +825,11 @@ void Synthesizer::blendCurveBases( Structure::Curve * curve1, Structure::Curve *
 
 void Synthesizer::blendSheetBases( Structure::Sheet * sheet1, Structure::Sheet * sheet2, float alpha )
 {
+#if 0 // Gideon, redundant code
     sheet1 = sheet1;
     sheet2 = sheet2;
     alpha = alpha;
+#endif
 }
 
 void Synthesizer::blendGeometryCurves( Structure::Curve * curve, float alpha, const SynthData & data, QVector<Vector3f> &points, QVector<Vector3f> &normals, bool isApprox )

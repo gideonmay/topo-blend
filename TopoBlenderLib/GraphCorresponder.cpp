@@ -604,7 +604,7 @@ void GraphCorresponder::computeOrientationDiffMatrix( MATRIX & M )
 
 				vec1.normalize();
 				vec2.normalize();
-				M[i][j] = 1.0 - abs(dot(vec1, vec2));
+				M[i][j] = 1.0 - std::abs(dot(vec1, vec2));
 			}
 		}
 	}

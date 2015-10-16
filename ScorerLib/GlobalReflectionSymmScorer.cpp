@@ -156,7 +156,7 @@ int GlobalReflectionSymmScorer::findNearestPart(const Eigen::Vector3d &nc, const
         tdist = (nc-nc1).norm();
 
 		size2 = graph_->nodes[i]->bbox().diagonal().norm();
-		double tmp = abs(size-size2)/(size+size2);
+		double tmp = std::abs(size-size2)/(size+size2);
 		
 
         if ( tmp < 0.7 && tdist < dist)

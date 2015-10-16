@@ -27,7 +27,7 @@ QString htmlTable( QVector<QStringList> rows, QString stylesheet ){
 	return html(table, "table", stylesheet);
 }
 
-ExporterWidget::ExporterWidget(Session *session, QWidget *parent) : QWidget(parent), session(session), ui(new Ui::ExporterWidget)
+ExporterWidget::ExporterWidget(Session *session, QWidget *parent) : QWidget(parent), ui(new Ui::ExporterWidget), session(session)
 {
     ui->setupUi(this);
 	this->setVisible(false);

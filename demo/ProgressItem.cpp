@@ -6,7 +6,9 @@
 ProgressItem::ProgressItem(QString message, bool isLoading, QGraphicsScene * scene) :
     message(message), isLoading(isLoading), scene(scene), progress(0)
 {
-    items = new QGraphicsItemGroup(0,scene);
+    // CHECK FIXME Gideon
+    // items = new QGraphicsItemGroup(0,scene);
+    items = new QGraphicsItemGroup(0);
     connect(this, SIGNAL(visibleChanged()), SLOT(visiblityChanged()));
 
     // Spinner
@@ -94,9 +96,12 @@ void ProgressItem::applyProgress()
         int x = spinner->width;
         int y = spinner->height;
 
+	// FIXME XXX Gideon
+#if 0 
         spinner->translate( 0.5 * x,  0.5 * y);
         spinner->rotate(10);
         spinner->translate(-0.5 * x, -0.5 * y);
+#endif 
     }
     else
     {

@@ -15,7 +15,7 @@ static QString NONE = "NONE";
 class PairRelation
 {
 public:
-	PairRelation():n1(0),n2(0),tag(true),type(NONE){}
+	PairRelation():n1(0),n2(0),type(NONE),tag(true){}
 	PairRelation(Structure::Node* node1, Structure::Node* node2):n1(node1),n2(node2){}
 	bool isDegenerated(){return n1==0 || n2==0;}
 	Structure::Node* n1;

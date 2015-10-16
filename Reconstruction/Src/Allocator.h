@@ -32,7 +32,7 @@ DAMAGE.
 
 class AllocatorState{
 public:
-	int index,remains;
+	size_t index,remains;
 };
 /** This templated class assists in memory allocation and is well suited for instances
   * when it is known that the sequence of memory allocations is performed in a stack-based
@@ -44,8 +44,8 @@ public:
   */
 template<class T>
 class Allocator{
-	int blockSize;
-	int index,remains;
+	size_t blockSize;
+	size_t index,remains;
 	std::vector<T*> memory;
 public:
 	Allocator(void){
@@ -135,11 +135,11 @@ public:
 	  * more memory. Note that if the number of objects requested is larger than the value blockSize with which
 	  * the allocator was initialized, the request for memory will fail.
 	  */
-	T* newElements( int elements=1){
+	T* newElements( size_t elements=1){
 		T* mem;
 		if(!elements){return NULL;}
 		if(elements>blockSize){
-			fprintf(stderr,"Allocator Error, elements bigger than block-size: %d>%d\n",elements,blockSize);
+			fprintf(stderr,"Allocator Error, elements bigger than block-size: %zu>%zu\n",elements,blockSize);
 			return NULL;
 		}
 		if(remains<elements){

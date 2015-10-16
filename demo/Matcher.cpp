@@ -268,7 +268,10 @@ void Matcher::graphHit( GraphItem::HitResult hit )
 	QVector<GraphHit> & group = (g == s->inputGraphs[0]->g) ? groupA : groupB;
 
 	// Unique results: add only if not there
-	if(!group.contains(n->id)) group.push_back( GraphHit(n->id, hit.ipoint) );
+	// FIXME TODO Gideon
+	// if(!group.contains(n->id)) {
+		group.push_back( GraphHit(n->id, hit.ipoint) );
+	// }
 
 	if( hit.hitMode == MARKING && !isGrouping )
 	{

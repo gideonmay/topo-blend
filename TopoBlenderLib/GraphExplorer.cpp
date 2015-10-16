@@ -12,7 +12,7 @@
 
 #include "ExportDynamicGraph.h"
 
-GraphExplorer::GraphExplorer(QWidget *parent): QWidget(parent), ui(new Ui::GraphExplorer), p(NULL), svgViewer(NULL)
+GraphExplorer::GraphExplorer(QWidget *parent): QWidget(parent), p(NULL), svgViewer(NULL), ui(new Ui::GraphExplorer)
 {
 	//setAttribute(Qt::WA_DeleteOnClose);
 	ui->setupUi(this);
@@ -98,9 +98,9 @@ void GraphExplorer::drawGraph()
 {
 	if(!dotPath.size()){
 		#ifdef Q_OS_WIN
-		dotPath = "\"" + QString(exec("where dot").c_str()).replace("\\","/").trimmed() + "\"";
+		dotPath = "\"" + QString(exec((char *) "where dot").c_str()).replace("\\","/").trimmed() + "\"";
 		#else
-		dotPath = QString(exec("which dot").c_str());
+		dotPath = QString(exec((char *) "which dot").c_str());
 		#endif
 
 		if(!dotPath.size())

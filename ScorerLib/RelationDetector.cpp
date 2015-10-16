@@ -124,7 +124,7 @@ Structure::Link* RelationDetector::findLink(Structure::Node *n1, Structure::Node
 	for ( int i = 0; i < tmp1; ++i)
 	{
 		Structure::Link* tmpLink = graph->edges[i];
-		if (tmpLink->n1 == n1 && tmpLink->n2 == n2 || tmpLink->n1 == n2 && tmpLink->n2 == n1)
+		if ((tmpLink->n1 == n1 && tmpLink->n2 == n2) || (tmpLink->n1 == n2 && tmpLink->n2 == n1))
 		{
 			link = tmpLink;
 			break;
@@ -146,7 +146,7 @@ double RelationDetector::computeDeviationByLink(Structure::Link* link)
 }
 
 RelationDetector::RelationDetector(Structure::Graph* g, const QString& logprefix, int ith, double normalizeCoef, int pointLevel, int logLevel)
-	                              :graph_(g),logLevel_(logLevel), normalizeCoef_(normalizeCoef), pointLevel_(pointLevel)
+	                              :graph_(g),normalizeCoef_(normalizeCoef),  pointLevel_(pointLevel), logLevel_(logLevel)
 {
 	thRadiusRadio_ = 1.1;
 

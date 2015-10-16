@@ -96,21 +96,21 @@ void QuickAlignment::visualizeSelections()
 	// Set black for all
 	foreach (Structure::Node * node,  ga->nodes)
 	{
-		node->vis_property["color"] = Qt::lightGray;
+		node->vis_property["color"] = QColor(Qt::lightGray);
 		node->vis_property["showControl"] = false;
 	}
 	foreach (Structure::Node * node,  gb->nodes)
 	{
-		node->vis_property["color"] = Qt::lightGray;
+		node->vis_property["color"] = QColor(Qt::lightGray);
 		node->vis_property["showControl"] = false;
 	}
 
 	// Set red for landmark
 	foreach (QListWidgetItem * item, items1)
-		ga->getNode(item->text())->vis_property["color"] = Qt::red;
+		ga->getNode(item->text())->vis_property["color"] = QColor(Qt::red);
 	
 	foreach (QListWidgetItem * item, items2)
-		gb->getNode(item->text())->vis_property["color"] = Qt::green;
+		gb->getNode(item->text())->vis_property["color"] = QColor(Qt::green);
 
 	emit( updateView() );
 }

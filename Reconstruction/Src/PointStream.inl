@@ -126,7 +126,7 @@ void PLYPointStream< Real >::reset( void )
 			exit( 0 );
 		}	
 
-		if( equal_strings( "vertex" , elem_name ) )
+		if( equal_strings( (char *) "vertex" , elem_name ) )
 		{
 			foundVertices = true;
 			_pCount = num_elems , _pIdx = 0;

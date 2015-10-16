@@ -23,7 +23,7 @@
 
 Q_DECLARE_METATYPE( QSet<int> ) // for tags
 
-	Scheduler::Scheduler() : globalStart(0.0), globalEnd(1.0), timeStep( 1.0 / 100.0 ), overTime(0.0), isApplyChangesUI(false)
+	Scheduler::Scheduler() : timeStep( 1.0 / 100.0 ), globalStart(0.0), globalEnd(1.0), overTime(0.0), isApplyChangesUI(false)
 {
 	rulerHeight = 25;
 
@@ -1080,7 +1080,7 @@ void Scheduler::setSchedule( ScheduleType fromSchedule )
 	Task * t = NULL;
 	foreach(QString nodeID, fromSchedule.keys())
 	{
-		if(t = getTaskFromNodeID(nodeID))
+		if((t = getTaskFromNodeID(nodeID)) != NULL)
 		{
 			t->setStart(fromSchedule[nodeID].first);
 			t->setLength(fromSchedule[nodeID].second);

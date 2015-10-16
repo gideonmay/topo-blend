@@ -7,7 +7,7 @@
 class SpinnerItem : public QGraphicsItem {
 public:
     SpinnerItem(int radius, int lineWidth, QColor color, int spanAngle = 60) :
-        width(radius), height(radius), lineWidth(lineWidth), color(color), spanAngle(spanAngle), timer(new QTimer){}
+        width(radius), height(radius), lineWidth(lineWidth), spanAngle(spanAngle), color(color), timer(new QTimer){}
 
     int width, height, lineWidth, spanAngle;
     QColor color;

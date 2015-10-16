@@ -227,7 +227,7 @@ typedef struct PlyFace
 } PlyFace;
 static PlyProperty face_props[] =
 {
-	{ "vertex_indices" , PLY_INT , PLY_INT , offsetof(PlyFace,vertices) , 1 , PLY_UCHAR, PLY_UCHAR , offsetof(PlyFace,nr_vertices) },
+	{ (char *) "vertex_indices" , PLY_INT , PLY_INT , offsetof(PlyFace,vertices) , 1 , PLY_UCHAR, PLY_UCHAR , offsetof(PlyFace,nr_vertices) },
 };
 
 template< class Real >
@@ -261,16 +261,16 @@ template< class Real > PlyVertex< Real > operator * ( XForm4x4< Real > xForm , P
 template<>
 PlyProperty PlyVertex< float >::Properties[]=
 {
-	{"x", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyVertex,point.coords[0])), 0, 0, 0, 0},
-	{"y", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyVertex,point.coords[1])), 0, 0, 0, 0},
-	{"z", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyVertex,point.coords[2])), 0, 0, 0, 0}
+	{(char *) "x", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyVertex,point.coords[0])), 0, 0, 0, 0},
+	{(char *) "y", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyVertex,point.coords[1])), 0, 0, 0, 0},
+	{(char *) "z", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyVertex,point.coords[2])), 0, 0, 0, 0}
 };
 template<>
 PlyProperty PlyVertex< double >::Properties[]=
 {
-	{"x", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyVertex,point.coords[0])), 0, 0, 0, 0},
-	{"y", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyVertex,point.coords[1])), 0, 0, 0, 0},
-	{"z", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyVertex,point.coords[2])), 0, 0, 0, 0}
+	{(char *) "x", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyVertex,point.coords[0])), 0, 0, 0, 0},
+	{(char *) "y", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyVertex,point.coords[1])), 0, 0, 0, 0},
+	{(char *) "z", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyVertex,point.coords[2])), 0, 0, 0, 0}
 };
 template< class Real >
 class PlyValueVertex
@@ -304,18 +304,18 @@ template< class Real > PlyValueVertex< Real > operator * ( XForm4x4< Real > xFor
 template< >
 PlyProperty PlyValueVertex< float >::Properties[]=
 {
-	{"x", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyValueVertex,point.coords[0])), 0, 0, 0, 0},
-	{"y", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyValueVertex,point.coords[1])), 0, 0, 0, 0},
-	{"z", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyValueVertex,point.coords[2])), 0, 0, 0, 0},
-	{"value", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyValueVertex,value)), 0, 0, 0, 0}
+	{(char *) "x", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyValueVertex,point.coords[0])), 0, 0, 0, 0},
+	{(char *) "y", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyValueVertex,point.coords[1])), 0, 0, 0, 0},
+	{(char *) "z", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyValueVertex,point.coords[2])), 0, 0, 0, 0},
+	{(char *) "value", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyValueVertex,value)), 0, 0, 0, 0}
 };
 template< >
 PlyProperty PlyValueVertex< double >::Properties[]=
 {
-	{"x", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyValueVertex,point.coords[0])), 0, 0, 0, 0},
-	{"y", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyValueVertex,point.coords[1])), 0, 0, 0, 0},
-	{"z", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyValueVertex,point.coords[2])), 0, 0, 0, 0},
-	{"value", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyValueVertex,value)), 0, 0, 0, 0}
+	{(char *) "x", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyValueVertex,point.coords[0])), 0, 0, 0, 0},
+	{(char *) "y", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyValueVertex,point.coords[1])), 0, 0, 0, 0},
+	{(char *) "z", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyValueVertex,point.coords[2])), 0, 0, 0, 0},
+	{(char *) "value", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyValueVertex,value)), 0, 0, 0, 0}
 };
 template< class Real >
 class PlyOrientedVertex
@@ -348,22 +348,22 @@ template< class Real > PlyOrientedVertex< Real > operator * ( XForm4x4< Real > x
 template<>
 PlyProperty PlyOrientedVertex< float >::Properties[]=
 {
-	{"x", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyOrientedVertex,point.coords[0])), 0, 0, 0, 0},
-	{"y", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyOrientedVertex,point.coords[1])), 0, 0, 0, 0},
-	{"z", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyOrientedVertex,point.coords[2])), 0, 0, 0, 0},
-	{"nx", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyOrientedVertex,normal.coords[0])), 0, 0, 0, 0},
-	{"ny", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyOrientedVertex,normal.coords[1])), 0, 0, 0, 0},
-	{"nz", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyOrientedVertex,normal.coords[2])), 0, 0, 0, 0}
+	{(char *) "x", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyOrientedVertex,point.coords[0])), 0, 0, 0, 0},
+	{(char *) "y", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyOrientedVertex,point.coords[1])), 0, 0, 0, 0},
+	{(char *) "z", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyOrientedVertex,point.coords[2])), 0, 0, 0, 0},
+	{(char *) "nx", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyOrientedVertex,normal.coords[0])), 0, 0, 0, 0},
+	{(char *) "ny", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyOrientedVertex,normal.coords[1])), 0, 0, 0, 0},
+	{(char *) "nz", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyOrientedVertex,normal.coords[2])), 0, 0, 0, 0}
 };
 template<>
 PlyProperty PlyOrientedVertex< double >::Properties[]=
 {
-	{"x", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyOrientedVertex,point.coords[0])), 0, 0, 0, 0},
-	{"y", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyOrientedVertex,point.coords[1])), 0, 0, 0, 0},
-	{"z", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyOrientedVertex,point.coords[2])), 0, 0, 0, 0},
-	{"nx", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyOrientedVertex,normal.coords[0])), 0, 0, 0, 0},
-	{"ny", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyOrientedVertex,normal.coords[1])), 0, 0, 0, 0},
-	{"nz", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyOrientedVertex,normal.coords[2])), 0, 0, 0, 0}
+	{(char *) "x", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyOrientedVertex,point.coords[0])), 0, 0, 0, 0},
+	{(char *) "y", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyOrientedVertex,point.coords[1])), 0, 0, 0, 0},
+	{(char *) "z", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyOrientedVertex,point.coords[2])), 0, 0, 0, 0},
+	{(char *) "nx", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyOrientedVertex,normal.coords[0])), 0, 0, 0, 0},
+	{(char *) "ny", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyOrientedVertex,normal.coords[1])), 0, 0, 0, 0},
+	{(char *) "nz", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyOrientedVertex,normal.coords[2])), 0, 0, 0, 0}
 };
 template< class Real >
 class PlyColorVertex
@@ -383,22 +383,22 @@ public:
 template<>
 PlyProperty PlyColorVertex< float >::Properties[]=
 {
-	{"x", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyColorVertex,point.coords[0])), 0, 0, 0, 0},
-	{"y", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyColorVertex,point.coords[1])), 0, 0, 0, 0},
-	{"z", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyColorVertex,point.coords[2])), 0, 0, 0, 0},
-	{"red",		PLY_UCHAR, PLY_UCHAR, int(offsetof(PlyColorVertex,color[0])),	0, 0, 0, 0},
-	{"green",	PLY_UCHAR, PLY_UCHAR, int(offsetof(PlyColorVertex,color[1])),	0, 0, 0, 0},
-	{"blue",	PLY_UCHAR, PLY_UCHAR, int(offsetof(PlyColorVertex,color[2])),	0, 0, 0, 0}
+	{(char *) "x", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyColorVertex,point.coords[0])), 0, 0, 0, 0},
+	{(char *) "y", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyColorVertex,point.coords[1])), 0, 0, 0, 0},
+	{(char *) "z", PLY_FLOAT, PLY_FLOAT, int(offsetof(PlyColorVertex,point.coords[2])), 0, 0, 0, 0},
+	{(char *) "red",		PLY_UCHAR, PLY_UCHAR, int(offsetof(PlyColorVertex,color[0])),	0, 0, 0, 0},
+	{(char *) "green",	PLY_UCHAR, PLY_UCHAR, int(offsetof(PlyColorVertex,color[1])),	0, 0, 0, 0},
+	{(char *) "blue",	PLY_UCHAR, PLY_UCHAR, int(offsetof(PlyColorVertex,color[2])),	0, 0, 0, 0}
 };
 template<>
 PlyProperty PlyColorVertex< double >::Properties[]=
 {
-	{"x", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyColorVertex,point.coords[0])), 0, 0, 0, 0},
-	{"y", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyColorVertex,point.coords[1])), 0, 0, 0, 0},
-	{"z", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyColorVertex,point.coords[2])), 0, 0, 0, 0},
-	{"red",		PLY_UCHAR, PLY_UCHAR, int(offsetof(PlyColorVertex,color[0])),	0, 0, 0, 0},
-	{"green",	PLY_UCHAR, PLY_UCHAR, int(offsetof(PlyColorVertex,color[1])),	0, 0, 0, 0},
-	{"blue",	PLY_UCHAR, PLY_UCHAR, int(offsetof(PlyColorVertex,color[2])),	0, 0, 0, 0}
+	{(char *) "x", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyColorVertex,point.coords[0])), 0, 0, 0, 0},
+	{(char *) "y", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyColorVertex,point.coords[1])), 0, 0, 0, 0},
+	{(char *) "z", PLY_DOUBLE, PLY_DOUBLE, int(offsetof(PlyColorVertex,point.coords[2])), 0, 0, 0, 0},
+	{(char *) "red",		PLY_UCHAR, PLY_UCHAR, int(offsetof(PlyColorVertex,color[0])),	0, 0, 0, 0},
+	{(char *) "green",	PLY_UCHAR, PLY_UCHAR, int(offsetof(PlyColorVertex,color[1])),	0, 0, 0, 0},
+	{(char *) "blue",	PLY_UCHAR, PLY_UCHAR, int(offsetof(PlyColorVertex,color[2])),	0, 0, 0, 0}
 };
 
 template< class Vertex >
@@ -431,19 +431,19 @@ int PlyWritePolygons(char* fileName,
 	int nr_vertices=int(vertices.size());
 	int nr_faces=int(polygons.size());
 	float version;
-	char *elem_names[] = { "vertex" , "face" };
+	char *elem_names[] = { (char *) "vertex" , (char *) "face" };
 	PlyFile *ply = ply_open_for_writing( fileName , 2 , elem_names , file_type , &version );
 	if (!ply){return 0;}
 	
 	//
 	// describe vertex and face properties
 	//
-	ply_element_count(ply, "vertex", nr_vertices);
+	ply_element_count(ply, (char *) "vertex", nr_vertices);
 	for(int i=0;i<propertyNum;i++)
-		ply_describe_property(ply, "vertex", &properties[i]);
+		ply_describe_property(ply, (char *) "vertex", &properties[i]);
 	
-	ply_element_count(ply, "face", nr_faces);
-	ply_describe_property(ply, "face", &face_props[0]);
+	ply_element_count(ply, (char *) "face", nr_faces);
+	ply_describe_property(ply, (char *) "face", &face_props[0]);
 	
 	// Write in the comments
 	if(comments && commentNum)
@@ -453,7 +453,7 @@ int PlyWritePolygons(char* fileName,
 	ply_header_complete(ply);
 	
 	// write vertices
-	ply_put_element_setup(ply, "vertex");
+	ply_put_element_setup(ply, (char *) "vertex");
 	for (int i=0; i < int(vertices.size()); i++)
 		ply_put_element(ply, (void *) &vertices[i]);
 
@@ -463,7 +463,7 @@ int PlyWritePolygons(char* fileName,
 	ply_face.nr_vertices = 3;
 	ply_face.vertices = new int[3];
 
-	ply_put_element_setup(ply, "face");
+	ply_put_element_setup(ply, (char *) "face");
 	for (int i=0; i < nr_faces; i++)
 	{
 		if(int(polygons[i].size())>maxFaceVerts)
@@ -538,7 +538,7 @@ int PlyReadPolygons(char* fileName,
 			ply_close(ply);
 			return 0;
 		}		
-		if (equal_strings("vertex", elem_name))
+		if (equal_strings((char *) "vertex", elem_name))
 		{
 			for( int i=0 ; i<propertyNum ; i++)
 			{
@@ -548,7 +548,7 @@ int PlyReadPolygons(char* fileName,
 			vertices.resize(num_elems);
 			for (j=0; j < num_elems; j++)	ply_get_element (ply, (void *) &vertices[j]);
 		}
-		else if (equal_strings("face", elem_name))
+		else if (equal_strings((char *) "face", elem_name))
 		{
 			ply_get_property (ply, elem_name, &face_props[0]);
 			polygons.resize(num_elems);
@@ -603,7 +603,7 @@ int PlyWritePolygons( char* fileName , CoredMeshData< Vertex >* mesh , int file_
 	int nr_vertices=int(mesh->outOfCorePointCount()+mesh->inCorePoints.size());
 	int nr_faces=mesh->polygonCount();
 	float version;
-	char *elem_names[] = { "vertex" , "face" };
+	char *elem_names[] = { (char *) "vertex" , (char *) "face" };
 	PlyFile *ply = ply_open_for_writing( fileName , 2 , elem_names , file_type , &version );
 	if( !ply ) return 0;
 
@@ -612,11 +612,11 @@ int PlyWritePolygons( char* fileName , CoredMeshData< Vertex >* mesh , int file_
 	//
 	// describe vertex and face properties
 	//
-	ply_element_count( ply , "vertex" , nr_vertices );
-	for( int i=0 ; i<Vertex::Components ; i++ ) ply_describe_property( ply , "vertex" , &Vertex::Properties[i] );
+	ply_element_count( ply , (char *) "vertex" , nr_vertices );
+	for( int i=0 ; i<Vertex::Components ; i++ ) ply_describe_property( ply , (char *) "vertex" , &Vertex::Properties[i] );
 	
-	ply_element_count( ply , "face" , nr_faces );
-	ply_describe_property( ply , "face" , &face_props[0] );
+	ply_element_count( ply , (char *) "face" , nr_faces );
+	ply_describe_property( ply , (char *) "face" , &face_props[0] );
 	
 	// Write in the comments
 	for( i=0 ; i<commentNum ; i++ ) ply_put_comment( ply , comments[i] );
@@ -624,7 +624,7 @@ int PlyWritePolygons( char* fileName , CoredMeshData< Vertex >* mesh , int file_
 	ply_header_complete( ply );
 	
 	// write vertices
-	ply_put_element_setup( ply , "vertex" );
+	ply_put_element_setup( ply , (char *) "vertex" );
 	Point3D< float > p;
 	for( i=0 ; i<int( mesh->inCorePoints.size() ) ; i++ )
 	{
@@ -641,7 +641,7 @@ int PlyWritePolygons( char* fileName , CoredMeshData< Vertex >* mesh , int file_
 	
 	// write faces
 	std::vector< CoredVertexIndex > polygon;
-	ply_put_element_setup( ply , "face" );
+	ply_put_element_setup( ply , (char *) "face" );
 	for( i=0 ; i<nr_faces ; i++ )
 	{
 		//
@@ -671,7 +671,7 @@ int PlyWritePolygons( char* fileName , CoredMeshData< Vertex >* mesh , int file_
 	int nr_vertices=int(mesh->outOfCorePointCount()+mesh->inCorePoints.size());
 	int nr_faces=mesh->polygonCount();
 	float version;
-	char *elem_names[] = { "vertex" , "face" };
+	char *elem_names[] = { (char *) "vertex" , (char *) "face" };
 	PlyFile *ply = ply_open_for_writing( fileName , 2 , elem_names , file_type , &version );
 	if( !ply ) return 0;
 
@@ -680,11 +680,11 @@ int PlyWritePolygons( char* fileName , CoredMeshData< Vertex >* mesh , int file_
 	//
 	// describe vertex and face properties
 	//
-	ply_element_count( ply , "vertex" , nr_vertices );
-	for( int i=0 ; i<Vertex::Components ; i++ ) ply_describe_property( ply , "vertex" , &Vertex::Properties[i] );
+	ply_element_count( ply , (char *) "vertex" , nr_vertices );
+	for( int i=0 ; i<Vertex::Components ; i++ ) ply_describe_property( ply , (char *) "vertex" , &Vertex::Properties[i] );
 	
-	ply_element_count( ply , "face" , nr_faces );
-	ply_describe_property( ply , "face" , &face_props[0] );
+	ply_element_count( ply , (char *) "face" , nr_faces );
+	ply_describe_property( ply , (char *) "face" , &face_props[0] );
 	
 	// Write in the comments
 	for( i=0 ; i<commentNum ; i++ ) ply_put_comment( ply , comments[i] );
@@ -692,7 +692,7 @@ int PlyWritePolygons( char* fileName , CoredMeshData< Vertex >* mesh , int file_
 	ply_header_complete( ply );
 	
 	// write vertices
-	ply_put_element_setup( ply , "vertex" );
+	ply_put_element_setup( ply , (char *) "vertex" );
 	Point3D< float > p;
 	for( i=0 ; i<int( mesh->inCorePoints.size() ) ; i++ )
 	{
@@ -709,7 +709,7 @@ int PlyWritePolygons( char* fileName , CoredMeshData< Vertex >* mesh , int file_
 	
 	// write faces
 	std::vector< CoredVertexIndex > polygon;
-	ply_put_element_setup( ply , "face" );
+	ply_put_element_setup( ply , (char *) "face" );
 	for( i=0 ; i<nr_faces ; i++ )
 	{
 		//

@@ -177,7 +177,7 @@ int OctNode<NodeData,Real>::maxDepth(void) const{
 	if(!children){return 0;}
 	else{
 		int c,d;
-		for(int i=0;i<Cube::CORNERS;i++){
+		for(unsigned int i=0;i<Cube::CORNERS;i++){
 			d=children[i].maxDepth();
 			if(!i || d>c){c=d;}
 		}
@@ -189,7 +189,7 @@ int OctNode<NodeData,Real>::nodes(void) const{
 	if(!children){return 1;}
 	else{
 		int c=0;
-		for(int i=0;i<Cube::CORNERS;i++){c+=children[i].nodes();}
+		for(unsigned int i=0;i<Cube::CORNERS;i++){c+=children[i].nodes();}
 		return c+1;
 	}
 }
@@ -198,7 +198,7 @@ int OctNode<NodeData,Real>::leaves(void) const{
 	if(!children){return 1;}
 	else{
 		int c=0;
-		for(int i=0;i<Cube::CORNERS;i++){c+=children[i].leaves();}
+		for(unsigned int i=0;i<Cube::CORNERS;i++){c+=children[i].leaves();}
 		return c;
 	}
 }
@@ -208,7 +208,7 @@ int OctNode<NodeData,Real>::maxDepthLeaves(int maxDepth) const{
 	if(!children){return 1;}
 	else{
 		int c=0;
-		for(int i=0;i<Cube::CORNERS;i++){c+=children[i].maxDepthLeaves(maxDepth);}
+		for(unsigned int i=0;i<Cube::CORNERS;i++){c+=children[i].maxDepthLeaves(maxDepth);}
 		return c;
 	}
 }
@@ -763,7 +763,7 @@ int OctNode<NodeData,Real>::CornerIndex(const Point3D<Real>& center,const Point3
 template <class NodeData,class Real>
 template<class NodeData2>
 OctNode<NodeData,Real>& OctNode<NodeData,Real>::operator = (const OctNode<NodeData2,Real>& node){
-	int i;
+	unsigned int i;
 	if(children){delete[] children;}
 	children=NULL;
 

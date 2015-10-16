@@ -18,7 +18,7 @@ public:
 	{
 	public:
 		double operator() (Structure::Node *n1, Eigen::MatrixXd& m1, Structure::Node *n2, Eigen::MatrixXd& m2);
-		ConnectedPairModifier(Structure::Graph *graph, double gd, bool bUseLink, int pl):PairModifier(pl), bUseLink_(bUseLink),graph_(graph), normalizeCoef_(gd)//, logStream_(logStream)
+		ConnectedPairModifier(Structure::Graph *graph, double gd, bool bUseLink, int pl):PairModifier(pl), normalizeCoef_(gd), graph_(graph),bUseLink_(bUseLink)//, logStream_(logStream)
 		{};
 
 		double normalizeCoef_;

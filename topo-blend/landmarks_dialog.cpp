@@ -245,32 +245,32 @@ void LandmarksDialog::visualizeSelections()
 	for (int i = 0; i < sg()->nodes.size(); i++)
 	{
 		Structure::Node * node = sNode(i);
-		node->vis_property["color"] = Qt::lightGray;
+		node->vis_property["color"] = QColor(Qt::lightGray);
 		node->vis_property["showControl"] = false;
 	}
 
 	// Set yellow for selection
 	foreach (QListWidgetItem* item, ui->sList->selectedItems())
-		sg()->getNode(item->text())->vis_property["color"] = Qt::yellow;
+		sg()->getNode(item->text())->vis_property["color"] = QColor(Qt::yellow);
 
 	foreach (QListWidgetItem* item, ui->alignList1->selectedItems())
-		sg()->getNode(item->text())->vis_property["color"] = Qt::yellow;
+		sg()->getNode(item->text())->vis_property["color"] = QColor(Qt::yellow);
 
 	/// Target
 	// Set black for all
 	for (int i = 0; i < tg()->nodes.size(); i++)
 	{
 		Structure::Node * node = tNode(i);
-		node->vis_property["color"] = Qt::lightGray;
+		node->vis_property["color"] = QColor(Qt::lightGray);
 		node->vis_property["showControl"] = false;
 	}
 
 	// Set yellow for selection
 	foreach (QListWidgetItem* item, ui->tList->selectedItems())
-		tg()->getNode(item->text())->vis_property["color"] = Qt::yellow;
+		tg()->getNode(item->text())->vis_property["color"] = QColor(Qt::yellow);
 
 	foreach (QListWidgetItem* item, ui->alignList2->selectedItems())
-		tg()->getNode(item->text())->vis_property["color"] = Qt::yellow;
+		tg()->getNode(item->text())->vis_property["color"] = QColor(Qt::yellow);
 
 	tb->updateDrawArea();
 }
@@ -286,14 +286,14 @@ void LandmarksDialog::visualizeLandmark()
 		for (int i = 0; i < sg()->nodes.size(); i++)
 		{
 			Structure::Node * node = sNode(i);
-			node->vis_property["color"] = Qt::lightGray;
+			node->vis_property["color"] = QColor(Qt::lightGray);
 			node->vis_property["showControl"] = false;
 		}
 
 		for (int i = 0; i < tg()->nodes.size(); i++)
 		{
 			Structure::Node * node = tNode(i);
-			node->vis_property["color"] = Qt::lightGray;
+			node->vis_property["color"] = QColor(Qt::lightGray);
 			node->vis_property["showControl"] = false;
 		}
 
@@ -303,10 +303,10 @@ void LandmarksDialog::visualizeLandmark()
 
 		// Set red for landmark
 		foreach (QString sID, set2set.first)
-			sg()->getNode(sID)->vis_property["color"] = Qt::red;
+			sg()->getNode(sID)->vis_property["color"] = QColor(Qt::red);
 
 		foreach (QString tID, set2set.second)
-			tg()->getNode(tID)->vis_property["color"] = Qt::red;
+			tg()->getNode(tID)->vis_property["color"] = QColor(Qt::red);
 
 		tb->updateDrawArea();
 	}
@@ -531,7 +531,7 @@ void LandmarksDialog::visualizeCurrentPointLandmark()
 	gcorr->tg->clearSelections();
 
 	// Add current point landmarks
-	QColor color = Qt::yellow;
+	QColor color = QColor(Qt::yellow);
 	POINT_LANDMARK landmark = gcorr->pointLandmarks[currRow];
 
 	foreach (POINT_ID sID, landmark.first)
@@ -674,14 +674,14 @@ void LandmarksDialog::visualizeCorr( int row, int column )
 		for (int i = 0; i < sg()->nodes.size(); i++)
 		{
 			Structure::Node * node = sNode(i);
-			node->vis_property["color"] = Qt::lightGray;
+			node->vis_property["color"] = QColor(Qt::lightGray);
 			node->vis_property["showControl"] = false;
 		}
 
 		for (int i = 0; i < tg()->nodes.size(); i++)
 		{
 			Structure::Node * node = tNode(i);
-			node->vis_property["color"] = Qt::lightGray;
+			node->vis_property["color"] = QColor(Qt::lightGray);
 			node->vis_property["showControl"] = false;
 		}
 
@@ -690,10 +690,10 @@ void LandmarksDialog::visualizeCorr( int row, int column )
 
 		// Set red for landmark
 		foreach (QString sID, set2set.first)
-			sg()->getNode(sID)->vis_property["color"] = Qt::red;
+			sg()->getNode(sID)->vis_property["color"] = QColor(Qt::red);
 
 		foreach (QString tID, set2set.second)
-			tg()->getNode(tID)->vis_property["color"] = Qt::red;
+			tg()->getNode(tID)->vis_property["color"] = QColor(Qt::red);
 
 		tb->updateDrawArea();
 	}

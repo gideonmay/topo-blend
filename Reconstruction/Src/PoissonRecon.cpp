@@ -305,14 +305,14 @@ template< int Degree >
 int ExecuteMemory( int argc , char* argv[], std::vector< std::vector< float > > & positions, std::vector< std::vector< float > > & normals,
     std::vector< std::vector< float > > & vertices, std::vector< std::vector< int > > & faces )
 {
-    argc = (int)argc;
-    argv = argv;
+//    argc = (int)argc;
+//    argv = argv;
 
 	cmdLineParse( argc-1 , &argv[1] , sizeof(params)/sizeof(cmdLineReadable*) , params , 1 );
 
     typedef PlyVertex< Real > Vertex;
     bool OutputDensity = false;
-    OutputDensity = OutputDensity;
+    // OutputDensity = OutputDensity;
 
 	int i;
 	int paramNum = sizeof(params)/sizeof(cmdLineReadable*);
@@ -490,8 +490,8 @@ inline double to_seconds( const FILETIME& ft )
 
 int originalMain( int argc , char* argv[] )
 {
-    argc = (int) argc;
-    argv = argv;
+    // argc = (int) argc;
+    // argv = argv;
 
     return 0;
 

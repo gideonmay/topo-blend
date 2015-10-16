@@ -18,7 +18,7 @@ typedef QVector< QSet<size_t> > ForcedGroups;
 Q_DECLARE_METATYPE( ForcedGroups )
 Q_DECLARE_METATYPE( ScheduleType )
 
-Blender::Blender(Scene * scene, QString title) : DemoPage(scene,title), m_gcorr(NULL), s_manager(NULL), renderer(NULL), resultViewer(NULL)
+Blender::Blender(Scene * scene, QString title) : DemoPage(scene,title), s_manager(NULL), m_gcorr(NULL), renderer(NULL), resultViewer(NULL)
 {
 	this->numSuggestions = 4;
 	this->numInBetweens = 6;

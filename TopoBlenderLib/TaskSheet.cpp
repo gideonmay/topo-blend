@@ -37,6 +37,9 @@ void TaskSheet::executeSheet(double t)
 				executeMorphSheet(t);
 		}
         break;
+    case SPLIT:
+    case MERGE:
+	break;
     }
 }
 

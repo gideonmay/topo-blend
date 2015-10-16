@@ -42,7 +42,7 @@ public:
 template< class Real >
 class MemoryPointStream : public PointStream< Real >
 {
-    int curPos;
+    size_t curPos;
     std::vector< std::vector<Real> > *pos, *normal;
 public:
     MemoryPointStream( std::vector< std::vector<Real> > * positions, std::vector< std::vector<Real> > * normals  ){

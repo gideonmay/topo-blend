@@ -117,7 +117,7 @@ public:
 	T2* operator[]( int t ) { return out[t]; }
 	const T2* operator[]( int t ) const { return out[t]; }
 	int threads( void ) const { return int( out.size() ); }
-	void resize( int threads , int dim )
+	void resize( size_t threads , int dim )
 	{
 		if( threads!=out.size() || _dim<dim )
 		{

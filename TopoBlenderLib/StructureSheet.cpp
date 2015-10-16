@@ -25,7 +25,7 @@ Sheet::Sheet(const NURBS::NURBSRectangled & sheet, QString sheetID, QColor color
 
 Node * Sheet::clone()
 {
-	if(!this) return NULL;
+	// if(!this) return NULL; // Gideon
 
 	Sheet * cloneSheet = new Sheet( this->surface, this->id );
 	cloneSheet->surface.quads.clear();

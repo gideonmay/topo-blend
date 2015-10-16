@@ -1,5 +1,5 @@
 #include "PairRelationDetector.h"
-#pragma warning(disable:4100 4101)
+// #pragma warning(disable:4100 4101)
 
 void PairRelationDetector::pushToOtherPairs(QVector<PairRelation>& prs, QString type)
 {

@@ -130,9 +130,9 @@ BoundingBox::BoundingBox( const Vector3d& fromMin, const Vector3d& toMax )
 
 	this->center = (vmin + vmax) / 2.0;
 
-	this->xExtent = abs(vmax.x() - center.x());
-	this->yExtent = abs(vmax.y() - center.y());
-	this->zExtent = abs(vmax.z() - center.z());
+	this->xExtent = std::abs(vmax.x() - center.x());
+	this->yExtent = std::abs(vmax.y() - center.y());
+	this->zExtent = std::abs(vmax.z() - center.z());
 }
 
 std::vector<Vector3d> BoundingBox::getCorners()
@@ -191,21 +191,21 @@ bool BoundingBox::containsTriangle( const Vector3d& tv0, const Vector3d& tv1, co
 	
 	/* Bullet 3:  */
 	/*  test the 9 tests first (this was faster) */
-	fex = fabsf(e0[X]);
-	fey = fabsf(e0[Y]);
-	fez = fabsf(e0[Z]);
+	fex = std::abs(e0[X]);
+	fey = std::abs(e0[Y]);
+	fez = std::abs(e0[Z]);
 	AXISTEST_X01(e0[Z], e0[Y], fez, fey);
 	AXISTEST_Y02(e0[Z], e0[X], fez, fex);
 	AXISTEST_Z12(e0[Y], e0[X], fey, fex);
-	fex = fabsf(e1[X]);
-	fey = fabsf(e1[Y]);
-	fez = fabsf(e1[Z]);
+	fex = std::abs(e1[X]);
+	fey = std::abs(e1[Y]);
+	fez = std::abs(e1[Z]);
 	AXISTEST_X01(e1[Z], e1[Y], fez, fey);
 	AXISTEST_Y02(e1[Z], e1[X], fez, fex);
 	AXISTEST_Z0(e1[Y], e1[X], fey, fex);
-	fex = fabsf(e2[X]);
-	fey = fabsf(e2[Y]);
-	fez = fabsf(e2[Z]);
+	fex = std::abs(e2[X]);
+	fey = std::abs(e2[Y]);
+	fez = std::abs(e2[Z]);
 	AXISTEST_X2(e2[Z], e2[Y], fez, fey);
 	AXISTEST_Y1(e2[Z], e2[X], fez, fex);
 	AXISTEST_Z12(e2[Y], e2[X], fey, fex);
@@ -248,9 +248,9 @@ bool BoundingBox::intersectsBoundingBox( const BoundingBox& bb ) const
 
 bool BoundingBox::intersectsSphere( const Vector3d& sphere_center, double radius )
 {
-	if (abs(center.x() - sphere_center.x()) < radius + xExtent
-		&& abs(center.y() - sphere_center.y()) < radius + yExtent
-		&& abs(center.z() - sphere_center.z()) < radius + zExtent)
+	if (std::abs(center.x() - sphere_center.x()) < radius + xExtent
+		&& std::abs(center.y() - sphere_center.y()) < radius + yExtent
+		&& std::abs(center.z() - sphere_center.z()) < radius + zExtent)
 		return true;
 
 	return false;
@@ -258,9 +258,9 @@ bool BoundingBox::intersectsSphere( const Vector3d& sphere_center, double radius
 
 bool BoundingBox::contains( const Vector3d& point ) const
 {
-	return abs(center.x() - point.x()) < xExtent
-		&& abs(center.y() - point.y()) < yExtent
-		&& abs(center.z() - point.z()) < zExtent;
+	return std::abs(center.x() - point.x()) < xExtent
+		&& std::abs(center.y() - point.y()) < yExtent
+		&& std::abs(center.z() - point.z()) < zExtent;
 }
 
 Vector3d BoundingBox::Center()

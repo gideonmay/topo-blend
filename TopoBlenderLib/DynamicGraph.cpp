@@ -281,7 +281,7 @@ Structure::Graph * DynamicGraph::toStructureGraph()
 		// Copy edge coordinates
 		Structure::Link *toEdge = graph->getEdge(id1, id2);
 		Structure::Link *fromEdge;
-		if(fromEdge = mGraph->getEdge(orig_id1,orig_id2))
+		if((fromEdge = mGraph->getEdge(orig_id1,orig_id2)) != NULL) 
 		{
 			toEdge->setCoord(id1, fromEdge->getCoord(id1));
 			toEdge->setCoord(id2, fromEdge->getCoord(id2));

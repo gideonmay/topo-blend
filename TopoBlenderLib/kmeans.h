@@ -49,6 +49,7 @@ namespace kmeansFast
 	/* 
 	   A C-program for MT19937, with initialization improved 2002/1/26.
 	   Coded by Takuji Nishimura and Makoto Matsumoto.
+	*/
 	/* Period parameters */  
 	#define N_N 624
 	#define M_M 397
@@ -417,7 +418,7 @@ namespace kmeansFast
 		ExtMat Mu ( Mu_OUT.data(), K, D);
 		ExtMat Z  ( Z_OUT.data(), N, 1);
 
-		init_Mu( X, Mu, "plusplus");
+		init_Mu( X, Mu, (char *) "plusplus");
 		run_lloyd( X, Mu, Z, iterations );
 
 		Clusters result;

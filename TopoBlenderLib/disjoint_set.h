@@ -12,17 +12,21 @@
 #define STDEXT __gnu_cxx
 #endif
 #else
-#include <ext/hash_map>
-#include <ext/hash_set>
+#include <unordered_map>
+#include <unordered_set>
+
+#if 0
 #define STDEXT __gnu_cxx
 // It's terrible but gnu's hash_map needs an instantiation of hash() for
 // every key type! So we cast the pointer to void*
 namespace __gnu_cxx{
-	template <> class hash<void *>: private hash<unsigned long>{
+	template <> class std::hash<void *>: private hash<unsigned long>{
 	public:
-		size_t operator()(const void *ptr) const { return hash<unsigned long>::operator()((unsigned long)ptr); }
+		size_t operator()(const void *ptr) const { return std::hash<unsigned long>::operator()((unsigned long)ptr); }
 	};
 }
+#endif
+#define STDEXT std
 #endif
 
 #include <vector>
@@ -58,8 +62,8 @@ class DisjointSet
 	STDEXT::hash_map< OBJECT_TYPE*, int > inserted_objects;
 	typedef typename STDEXT::hash_map< ObjectPointer, int >::iterator	hIterator;
 #else
-	STDEXT::hash_map< OBJECT_TYPE*, int, SimpleObjHashFunc > inserted_objects;
-	typedef typename STDEXT::hash_map< ObjectPointer, int, SimpleObjHashFunc  >::iterator	hIterator;
+	STDEXT::unordered_map< OBJECT_TYPE*, int, SimpleObjHashFunc > inserted_objects;
+	typedef typename STDEXT::unordered_map< ObjectPointer, int, SimpleObjHashFunc  >::iterator	hIterator;
 #endif
 
 	typedef std::pair< hIterator, bool > hInsertResult;

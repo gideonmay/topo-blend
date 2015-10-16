@@ -1,4 +1,4 @@
-#include <omp.h>
+// #include <omp.h>
 #include <QDebug>
 
 #include "PathEvaluator.h"
@@ -43,7 +43,9 @@ void PathEvaluator::test_filtering()
 			defaultSchedule.executeAll();
 		}
 
-		numPaths = qMax(1.0, double(timeLimit) / timer.elapsed() * omp_get_num_threads());
+		// FIXME
+		// numPaths = qMax(1.0, double(timeLimit) / timer.elapsed() * omp_get_num_threads());
+		numPaths = qMax(1.0, double(timeLimit) / timer.elapsed() * 4);
 
 		// Export source and target images
 		QColor inputColor(255,255,255);

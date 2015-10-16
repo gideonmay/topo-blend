@@ -79,13 +79,13 @@ void QuickGroup::visualizeSelections()
     // Set black for all
     foreach (Structure::Node * node,  g->nodes)
     {
-        node->vis_property["color"] = Qt::lightGray;
+        node->vis_property["color"] = QColor(Qt::lightGray);
         node->vis_property["showControl"] = false;
     }
 
     // Set red for landmark
     foreach (QListWidgetItem * item, items)
-        g->getNode(item->text())->vis_property["color"] = Qt::red;
+        g->getNode(item->text())->vis_property["color"] = QColor(Qt::red);
 
     emit( updateView() );
 }

@@ -9,7 +9,7 @@
 #include "GraphExplorer.h"
 
 BlendPathRenderer::BlendPathRenderer( Blender * blender, int itemHeight, bool isViewer, QWidget *parent ) 
-	: QGLWidget(parent), blender(blender), isViewerMode(isViewer), activeGraph(NULL)
+	: QGLWidget(parent), blender(blender), activeGraph(NULL),  isViewerMode(isViewer)
 {
 	int w = itemHeight;
 	int h = itemHeight;
@@ -173,7 +173,9 @@ void BlendPathRenderer::mouseMoveEvent(QMouseEvent *event)
 			qglviewer::Camera * sceneCamera = s_manager->property["camera"].value<qglviewer::Camera*>();
 
 			QPointF startPos = property("buttonDownPos").toPointF();
-			QPointF currentPos = event->posF();
+			// CHECK FIXME
+			// QPointF currentPos = event->posF();
+			QPointF currentPos = event->pos();
 
 			// Reset
 			sceneCamera->frame()->setPosition( sceneCamera->property("startPos").value<qglviewer::Vec>() );
@@ -209,8 +211,10 @@ void BlendPathRenderer::mousePressEvent(QMouseEvent *event)
 	orient.setValue( sceneCamera->frame()->orientation() );
 	sceneCamera->setProperty("startPos", pos);
 	sceneCamera->setProperty("startOrientation", orient);
-
-	setProperty("buttonDownPos", event->posF());
+	
+	// CHECK FIXME
+	// setProperty("buttonDownPos", event->posF());
+	setProperty("buttonDownPos", event->pos());
 
 	if(event->buttons() & Qt::RightButton)
 	{

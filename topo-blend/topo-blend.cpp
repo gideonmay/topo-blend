@@ -779,9 +779,9 @@ bool topoblend::keyPressEvent( QKeyEvent* event )
 		QString dotPath = "dot";
 
 		#ifdef Q_OS_WIN
-		dotPath = "\"" + QString(exec("where dot").c_str()).replace("\\","/").trimmed() + "\"";
+		dotPath = "\"" + QString(exec((char *)"where dot").c_str()).replace("\\","/").trimmed() + "\"";
 		#else
-		dotPath = QString(exec("which dot").c_str());
+		dotPath = QString(exec((char *)"which dot").c_str());
 		#endif
 
 		QProcess * p = graph_explorer->p;
@@ -993,4 +993,5 @@ bool topoblend::rayBBoxIntersect( Eigen::AlignedBox3d bbox, Vector3 origin, Vect
 	return false;
 }
 
-Q_EXPORT_PLUGIN(topoblend)
+// XXX FIXME Gideon
+// Q_EXPORT_PLUGIN(topoblend)

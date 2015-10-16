@@ -144,13 +144,13 @@ void SortedTreeNodes< OutputDensity >::setCornerTable( CornerTableData& cData , 
 				TreeOctNode* node = treeNodes[i];
 				if( d<maxDepth && node->children ) continue;
 				const typename TreeOctNode::ConstNeighbors3& neighbors = neighborKey.getNeighbors( node , minDepth );
-				for( int c=0 ; c<Cube::CORNERS ; c++ )	// Iterate over the cell's corners
+				for( unsigned int c=0 ; c<Cube::CORNERS ; c++ )	// Iterate over the cell's corners
 				{
 					bool cornerOwner = true;
 					int x , y , z;
-					int ac = Cube::AntipodalCornerIndex( c ); // The index of the node relative to the corner
+					unsigned int ac = Cube::AntipodalCornerIndex( c ); // The index of the node relative to the corner
 					Cube::FactorCornerIndex( c , x , y , z );
-					for( int cc=0 ; cc<Cube::CORNERS ; cc++ ) // Iterate over the corner's cells
+					for( unsigned int cc=0 ; cc<Cube::CORNERS ; cc++ ) // Iterate over the corner's cells
 					{
 						int xx , yy , zz;
 						Cube::FactorCornerIndex( cc , xx , yy , zz );
@@ -177,7 +177,7 @@ void SortedTreeNodes< OutputDensity >::setCornerTable( CornerTableData& cData , 
 						{
 							const typename TreeOctNode::ConstNeighbors3& neighbors = neighborKey.neighbors[d];
 							// Set all the corner indices at the current depth
-							for( int cc=0 ; cc<Cube::CORNERS ; cc++ )
+							for( unsigned int cc=0 ; cc<Cube::CORNERS ; cc++ )
 							{
 								int xx , yy , zz;
 								Cube::FactorCornerIndex( cc , xx , yy , zz );
@@ -207,7 +207,7 @@ void SortedTreeNodes< OutputDensity >::setCornerTable( CornerTableData& cData , 
 		{
 			int start = spans[d].first , end = spans[d].second , width = end - start;
 			for( int i=start + (width*t)/threads ; i<start+(width*(t+1))/threads ; i++ )
-				for( int c=0 ; c<Cube::CORNERS ; c++ )
+				for( unsigned int c=0 ; c<Cube::CORNERS ; c++ )
 				{
 					int& idx = cData[ treeNodes[i] ][c];
 					if( idx<0 )
@@ -218,7 +218,7 @@ void SortedTreeNodes< OutputDensity >::setCornerTable( CornerTableData& cData , 
 						if( rootNode )
 							printf( "(%d [%d %d %d) <-> (%d [%d %d %d])\n" , minDepth , off[0] , off[1] , off[2] , _d , _off[0] , _off[1] , _off[2] );
 						else
-							printf( "NULL <-> (%d [%d %d %d])\n" , minDepth , off[0] , off[1] , off[2] , _d , _off[0] , _off[1] , _off[2] );
+							printf( "NULL <-> (%d [%d %d %d])\n" , minDepth , off[0] , off[1] , off[2] );
 						printf( "[%d %d]\n" , spans[d].first , spans[d].second );
 						exit( 0 );
 					}
@@ -254,13 +254,13 @@ int SortedTreeNodes< OutputDensity >::getMaxCornerCount( int depth , int maxDept
 			if( d<maxDepth && node->children ) continue;
 
 			const typename TreeOctNode::ConstNeighbors3& neighbors = neighborKey.getNeighbors( node , depth );
-			for( int c=0 ; c<Cube::CORNERS ; c++ )	// Iterate over the cell's corners
+			for( unsigned int c=0 ; c<Cube::CORNERS ; c++ )	// Iterate over the cell's corners
 			{
 				bool cornerOwner = true;
 				int x , y , z;
-				int ac = Cube::AntipodalCornerIndex( c ); // The index of the node relative to the corner
+				unsigned  ac = Cube::AntipodalCornerIndex( c ); // The index of the node relative to the corner
 				Cube::FactorCornerIndex( c , x , y , z );
-				for( int cc=0 ; cc<Cube::CORNERS ; cc++ ) // Iterate over the corner's cells
+				for( unsigned int cc=0 ; cc<Cube::CORNERS ; cc++ ) // Iterate over the corner's cells
 				{
 					int xx , yy , zz;
 					Cube::FactorCornerIndex( cc , xx , yy , zz );
@@ -343,13 +343,13 @@ void SortedTreeNodes< OutputDensity >::setEdgeTable( EdgeTableData& eData , cons
 				TreeOctNode* node = treeNodes[i];
 				const typename TreeOctNode::ConstNeighbors3& neighbors = neighborKey.getNeighbors( node , minDepth );
 
-				for( int e=0 ; e<Cube::EDGES ; e++ )
+				for( unsigned int e=0 ; e<Cube::EDGES ; e++ )
 				{
 					bool edgeOwner = true;
 					int o , i , j;
 					Cube::FactorEdgeIndex( e , o , i , j );
-					int ac = Square::AntipodalCornerIndex( Square::CornerIndex( i , j ) );
-					for( int cc=0 ; cc<Square::CORNERS ; cc++ )
+					unsigned int ac = Square::AntipodalCornerIndex( Square::CornerIndex( i , j ) );
+					for( unsigned int cc=0 ; cc<Square::CORNERS ; cc++ )
 					{
 						int ii , jj , x , y , z;
 						Square::FactorCornerIndex( cc , ii , jj );
@@ -365,7 +365,7 @@ void SortedTreeNodes< OutputDensity >::setEdgeTable( EdgeTableData& eData , cons
 					if( edgeOwner )
 					{
 						// Set all edge indices
-						for( int cc=0 ; cc<Square::CORNERS ; cc++ )
+						for( unsigned int cc=0 ; cc<Square::CORNERS ; cc++ )
 						{
 							int ii , jj , aii , ajj , x , y , z;
 							Square::FactorCornerIndex( cc , ii , jj );
@@ -396,7 +396,7 @@ void SortedTreeNodes< OutputDensity >::setEdgeTable( EdgeTableData& eData , cons
 		{
 			int start = spans[d].first , end = spans[d].second , width = end - start;
 			for( int i=start + (width*t)/threads ; i<start+(width*(t+1))/threads ; i++ )
-				for( int e=0 ; e<Cube::EDGES ; e++ )
+				for( unsigned int e=0 ; e<Cube::EDGES ; e++ )
 				{
 					int& idx = eData[ treeNodes[i] ][e];
 					if( idx<0 ) fprintf( stderr , "[ERROR] Found unindexed edge %d (%d,%d)\n" , idx , minDepth , maxDepth ) , exit( 0 );
@@ -433,13 +433,13 @@ int SortedTreeNodes< OutputDensity >::getMaxEdgeCount( const TreeOctNode* rootNo
 			int d , off[3];
 			node->depthAndOffset( d , off );
 
-			for( int e=0 ; e<Cube::EDGES ; e++ )
+			for( unsigned int e=0 ; e<Cube::EDGES ; e++ )
 			{
 				bool edgeOwner = true;
 				int o , i , j;
 				Cube::FactorEdgeIndex( e , o , i , j );
-				int ac = Square::AntipodalCornerIndex( Square::CornerIndex( i , j ) );
-				for( int cc=0 ; cc<Square::CORNERS ; cc++ )
+				unsigned int ac = Square::AntipodalCornerIndex( Square::CornerIndex( i , j ) );
+				for( unsigned int cc=0 ; cc<Square::CORNERS ; cc++ )
 				{
 					int ii , jj , x , y , z;
 					Square::FactorCornerIndex( cc , ii , jj );
@@ -1502,16 +1502,16 @@ int Octree< Degree , OutputDensity >::SetMatrixRow( const typename TreeOctNode::
 	for( int x=xStart ; x<(symmetric?3:xEnd) ; x++ )
 	{
 		minX = std::max< int >( 0 , -2+x ) , maxX = std::min< int >( 2 , -2+x+2 );
-        int dX = 2-x+3*0; dX = dX;
+        int dX = 2-x+3*0; // dX = dX;
 		for( int y=yStart ; y<yEnd ; y++ )
 		{
 			if( x==2 && y>2 && symmetric ) continue;
 			minY = std::max< int >( 0 , -2+y ) , maxY = std::min< int >( 2 , -2+y+2 );
-            int dY = 2-y+3*1; dY = dY;
+            int dY = 2-y+3*1; // dY = dY;
 			for( int z=zStart ; z<zEnd ; z++ )
 			{
 				if( x==2 && y==2 && z>2 && symmetric ) continue;
-                int dZ = 2-z+3*2; dZ = dZ;
+                int dZ = 2-z+3*2; // dZ = dZ;
 				if( neighbors5.neighbors[x][y][z] && neighbors5.neighbors[x][y][z]->nodeData.nodeIndex>=0 )
 				{
 					const TreeOctNode* _node = neighbors5.neighbors[x][y][z];
@@ -2299,10 +2299,10 @@ int Octree< Degree , OutputDensity >::GetFixedDepthLaplacian( SparseSymmetricMat
 }
 template< int Degree , bool OutputDensity >
 int Octree< Degree , OutputDensity>::GetRestrictedFixedDepthLaplacian( SparseSymmetricMatrix< Real >& matrix , int depth , const typename BSplineData< Degree , Real >::Integrator& integrator , const int* entries , int entryCount ,
-	const TreeOctNode* rNode , Real radius ,
+	const TreeOctNode* rNode , Real r ,
 	const SortedTreeNodes< OutputDensity >& sNodes , const Real* metSolution )
 {
-    radius = radius;
+    radius = r;
 
 	for( int i=0 ; i<entryCount ; i++ ) sNodes.treeNodes[ entries[i] ]->nodeData.nodeIndex = i;
 	int rDepth , rOff[3];
@@ -2438,9 +2438,10 @@ int Octree< Degree , OutputDensity >::_SolveFixedDepthMatrix( int depth , const 
 	mrVector.resize( threads , M.rows );
 
 	if( _boundaryType==0 && depth>3 ) res -= 1<<(depth-2);
-	if( !noSolve )
+	if( !noSolve ) {
 		if( fixedIters>=0 ) iter += SparseSymmetricMatrix< Real >::Solve( M , B , fixedIters                                                           , X , mrVector , Real(1e-10) , 0 , M.rows==res*res*res && !_constrainValues && _boundaryType!=-1 );
 		else                iter += SparseSymmetricMatrix< Real >::Solve( M , B , std::max< int >( int( pow( M.rows , ITERATION_POWER ) ) , minIters ) , X , mrVector ,_accuracy    , 0 , M.rows==res*res*res && !_constrainValues && _boundaryType!=-1 );
+    }
 	solveTime = Time()-solveTime;
 	if( showResidual )
 	{
@@ -2569,9 +2570,10 @@ int Octree< Degree , OutputDensity >::_SolveFixedDepthMatrix( int depth , const 
 		// Since we don't have the full matrix, the system shouldn't be singular, so we shouldn't have to correct it
 		sTime=Time();
 		Real _accuracy = Real( accuracy / 100000 ) * _M.rows;
-		if( !noSolve )
+		if( !noSolve ) {
 			if( fixedIters>=0 ) iter += SparseSymmetricMatrix< Real >::Solve( _M , _B , fixedIters                                                            , _X , mrVector ,  Real(1e-10) , 0 );
 			else                iter += SparseSymmetricMatrix< Real >::Solve( _M , _B , std::max< int >( int( pow( _M.rows , ITERATION_POWER ) ) , minIters ) , _X , mrVector , _accuracy    , 0 );
+		}
 		sTime=Time()-sTime;
 
 		if( showResidual )
@@ -2606,7 +2608,7 @@ int Octree< Degree , OutputDensity >::HasNormals( TreeOctNode* node , Real epsil
 {
 	int hasNormals=0;
 	if( node->nodeData.normalIndex>=0 && ( (*normals)[node->nodeData.normalIndex][0]!=0 || (*normals)[node->nodeData.normalIndex][1]!=0 || (*normals)[node->nodeData.normalIndex][2]!=0 ) ) hasNormals=1;
-	if( node->children ) for(int i=0;i<Cube::CORNERS && !hasNormals;i++) hasNormals |= HasNormals(&node->children[i],epsilon);
+	if( node->children ) for(unsigned int i=0;i<Cube::CORNERS && !hasNormals;i++) hasNormals |= HasNormals(&node->children[i],epsilon);
 
 	return hasNormals;
 }
@@ -2618,7 +2620,7 @@ void Octree< Degree , OutputDensity >::ClipTree( void )
 		if( temp->children && temp->depth()>=_minDepth )
 		{
 			int hasNormals=0;
-			for( int i=0 ; i<Cube::CORNERS && !hasNormals ; i++ ) hasNormals = HasNormals( &temp->children[i] , EPSILON/(1<<maxDepth) );
+			for( unsigned int i=0 ; i<Cube::CORNERS && !hasNormals ; i++ ) hasNormals = HasNormals( &temp->children[i] , EPSILON/(1<<maxDepth) );
 			if( !hasNormals ) temp->children=NULL;
 		}
 	MemoryUsage();
@@ -2878,9 +2880,9 @@ void Octree< Degree , OutputDensity >::FaceEdgesFunction::Function( const TreeOc
 		int isoTri[DIMENSION*MarchingCubes::MAX_TRIANGLES];
 		int count=MarchingCubes::AddTriangleIndices( node1->nodeData.mcIndex , isoTri );
 
-		for( int j=0 ; j<count ; j++ )
-			for( int k=0 ; k<3 ; k++ )
-				if( fIndex==Cube::FaceAdjacentToEdges( isoTri[j*3+k] , isoTri[j*3+((k+1)%3)] ) )
+		for( int j=0 ; j<count ; j++ ) {
+			for( int k=0 ; k<3 ; k++ ) {
+				if( fIndex==Cube::FaceAdjacentToEdges( isoTri[j*3+k] , isoTri[j*3+((k+1)%3)] ) ) {
 					if( GetRootIndex( node1 , isoTri[j*3+k] , maxDepth , ri1 ) && GetRootIndex( node1 , isoTri[j*3+((k+1)%3)] , maxDepth , ri2 ) )
 					{
 						long long key1=ri1.key , key2=ri2.key;
@@ -2900,7 +2902,13 @@ void Octree< Degree , OutputDensity >::FaceEdgesFunction::Function( const TreeOc
 						(*vertexCount)[key1].second--;
 						(*vertexCount)[key2].second++;
 					}
-					else fprintf( stderr , "Bad Edge 1: %d %d\n" , ri1.key , ri2.key );
+					else 
+					{
+							fprintf( stderr , "Bad Edge 1: %lld %lld\n" , ri1.key , ri2.key );
+				    }
+				}
+		    }
+		}
 	}
 }
 template< int Degree , bool OutputDensity >
@@ -2981,7 +2989,7 @@ template< int Degree , bool OutputDensity >
 template< class Vertex >
 void Octree< Degree , OutputDensity >::GetMCIsoTriangles( Real isoValue , int subdivideDepth , CoredMeshData< Vertex >* mesh , int fullDepthIso , int nonLinearFit , bool addBarycenter , bool polygonMesh )
 {
-    fullDepthIso = fullDepthIso;
+    // fullDepthIso = fullDepthIso;
 
 	typename BSplineData< Degree , Real >::template CornerEvaluator< 2 > evaluator;
 	fData.setCornerEvaluator( evaluator , 0 , postDerivativeSmooth , _boundaryType==0 );
@@ -3360,7 +3368,7 @@ Real Octree< Degree , OutputDensity >::GetIsoValue( void )
 				Real value = Real(0);
 				if( node->children )
 				{
-					for( int c=0 ; c<Cube::CORNERS ; c++ ) value += centerValues[ node->children[c].nodeData.nodeIndex ];
+					for( unsigned int c=0 ; c<Cube::CORNERS ; c++ ) value += centerValues[ node->children[c].nodeData.nodeIndex ];
 					value /= Cube::CORNERS;
 				}
 				else
@@ -3406,7 +3414,7 @@ void Octree< Degree , OutputDensity >::SetIsoCorners( Real isoValue , TreeOctNod
 	int mn = 2+o , mx = (1<<d)-2-o;
 	isInterior = ( off[0]>=mn && off[0]<mx && off[1]>=mn && off[1]<mx && off[2]>=mn && off[2]<mx );
 	nKey.getNeighbors( leaf );
-	for( int c=0 ; c<Cube::CORNERS ; c++ )
+	for( unsigned int c=0 ; c<Cube::CORNERS ; c++ )
 	{
 		int vIndex = cIndices[c];
 		if( valuesSet[vIndex] ) cornerValues[c] = values[vIndex];
@@ -4100,7 +4108,7 @@ void Octree< Degree , OutputDensity >::GetMCIsoEdges( TreeOctNode* node , int sD
 	fef.maxDepth = fData.depth;
 	fef.vertexCount = &vertexCount;
 	count = MarchingCubes::AddTriangleIndices( node->nodeData.mcIndex , isoTri );
-	for( fIndex=0 ; fIndex<Cube::NEIGHBORS ; fIndex++ )
+	for( fIndex=0 ; fIndex< (int) Cube::NEIGHBORS ; fIndex++ )
 	{
 		ref = Cube::FaceReflectFaceIndex( fIndex , fIndex );
 		fef.fIndex = ref;
@@ -4112,9 +4120,9 @@ void Octree< Degree , OutputDensity >::GetMCIsoEdges( TreeOctNode* node , int sD
 		else
 		{
 			RootInfo< OutputDensity > ri1 , ri2;
-			for( int j=0 ; j<count ; j++ )
-				for( int k=0 ; k<3 ; k++ )
-					if( fIndex==Cube::FaceAdjacentToEdges( isoTri[j*3+k] , isoTri[j*3+((k+1)%3)] ) )
+			for( int j=0 ; j<count ; j++ ) {
+				for( int k=0 ; k<3 ; k++ ) {
+					if( fIndex==Cube::FaceAdjacentToEdges( isoTri[j*3+k] , isoTri[j*3+((k+1)%3)] ) ) {
 						if( GetRootIndex( node , isoTri[j*3+k] , fData.depth , ri1 ) && GetRootIndex( node , isoTri[j*3+((k+1)%3)] , fData.depth , ri2 ) )
 						{
 							long long key1 = ri1.key , key2 = ri2.key;
@@ -4138,14 +4146,17 @@ void Octree< Degree , OutputDensity >::GetMCIsoEdges( TreeOctNode* node , int sD
 						{
 							int r1 = MarchingCubes::HasEdgeRoots( node->nodeData.mcIndex , isoTri[j*3+k] );
 							int r2 = MarchingCubes::HasEdgeRoots( node->nodeData.mcIndex , isoTri[j*3+((k+1)%3)] );
-							fprintf( stderr , "Bad Edge 2: %d %d\t%d %d\n" , ri1.key , ri2.key , r1 , r2 );
+							fprintf( stderr , "Bad Edge 2: %lld %lld\t%d %d\n" , ri1.key , ri2.key , r1 , r2 );
 						}
+				    }
+				}
+		    }
 		}
 	}
 	for( int i=0 ; i<int(edges.size()) ; i++ )
 	{
 		iter = vertexCount.find( edges[i].first.key );
-		if( iter==vertexCount.end() ) printf( "Could not find vertex: %lld\n" , edges[i].first );
+		if( iter==vertexCount.end() ) printf( "Could not find vertex: %lld\n" , edges[i].first.key );
 		else if( vertexCount[ edges[i].first.key ].second )
 		{
 			RootInfo< OutputDensity > ri;
@@ -4167,7 +4178,7 @@ void Octree< Degree , OutputDensity >::GetMCIsoEdges( TreeOctNode* node , int sD
 		}
 
 		iter = vertexCount.find( edges[i].second.key );
-		if( iter==vertexCount.end() ) printf( "Could not find vertex: %lld\n" , edges[i].second );
+		if( iter==vertexCount.end() ) printf( "Could not find vertex: %lld\n" , edges[i].second.key );
 		else if( vertexCount[edges[i].second.key].second )
 		{
 			RootInfo< OutputDensity > ri;

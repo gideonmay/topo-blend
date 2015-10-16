@@ -22,7 +22,7 @@ Curve::Curve(const NURBS::NURBSCurved & newCurve, QString newID, QColor color)
 
 Node * Curve::clone()
 {
-	if(!this) return NULL;
+	// if(!this) return NULL;
 
 	Curve * cloneCurve = new Curve( this->curve, this->id );
 	cloneCurve->property = this->property;
@@ -316,9 +316,9 @@ int Curve::numCtrlPnts()
 	return curve.mNumCtrlPoints;
 }
 
-void Curve::refineControlPoints( int nU, int nV /*= 0*/ )
+void Curve::refineControlPoints( int nU, int /* nV */  /*= 0*/ )
 {
-    nV = nV;
+    // nV = nV;
 
 	int diff = nU - curve.mNumCtrlPoints;
 	if(diff == 0) return;

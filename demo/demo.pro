@@ -86,8 +86,9 @@ win32:RC_FILE = demo.rc
 mac:ICON = images/appIcon.icns
 
 # Mac specific
-mac:LIBS += -framework CoreFoundation # We need this for GLee..
-mac:QMAKE_LFLAGS += -fopenmp
+# mac:LIBS += -framework CoreFoundation # We need this for GLee..
+# mac:QMAKE_LFLAGS += -fopenmp
+
 
 unix:!mac:QMAKE_CXXFLAGS = $$QMAKE_CFLAGS -fpermissive
 unix:!mac:LIBS += -lGLU
